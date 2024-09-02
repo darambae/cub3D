@@ -24,48 +24,47 @@ void	verLine(int x, int drawStart, int drawEnd, t_param *param)
 
 void	draw_line(t_param param)
 {
-	int		cur;
-	int		color;
-	double	cameraX;
-	t_vector	rayDir;
-	t_vector	map;
-	t_vector	delatDist;
-	t_vector	sideDist;
-	t_vector	step;
-	int		hit;
-	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
-	double	perpWallDist;
+	int			cur;
+	double		cameraX;
+	t_map		rayDir;
+	t_map		map;
+	t_map		delatDist;
+	t_map		sideDist;
+	t_map		step;
+	int			hit;
+	int			side;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+	double		perpWallDist;
 
 	cur = 0;
 	while (cur < SCREEN_W)
 	{
 		cameraX = 2 * cur / (double)SCREEN_W;
-		rayDir = addVectors(param.dir, scaleVectors(param.plane, cameraX));
-		map = (t_vector){(int)param.pos.x, (int)param.pos.y};
-		delatDist = (t_vector){fabs(1 / rayDir.x), fabs(1 / rayDir.y)};
+		rayDir = addVectors(*param.dir, scaleVectors(*param.plane, cameraX));
+		map = (t_map){(int)param.pos->x, (int)param.pos->y, 0};
+		delatDist = (t_map){fabs(1 / rayDir.x), fabs(1 / rayDir.y), 0};
 		hit = 0;
 		if (rayDir.x < 0)
 		{
 			step.x = -1;
-			sideDist.x = (param.pos.x - map.x) * delatDist.x;
+			sideDist.x = (param.pos->x - map.x) * delatDist.x;
 		}
 		else
 		{
 			step.x = 1;
-			sideDist.x = (map.x + 1.0 - param.pos.x) * delatDist.x;
+			sideDist.x = (map.x + 1.0 - param.pos->x) * delatDist.x;
 		}
 		if (rayDir.y < 0)
 		{
 			step.y = -1;
-			sideDist.y = (param.pos.y - map.y) * delatDist.y;
+			sideDist.y = (param.pos->y - map.y) * delatDist.y;
 		}
 		else
 		{
 			step.y = 1;
-			sideDist.y = (map.y + 1.0 - param.pos.y) * delatDist.y;
+			sideDist.y = (map.y + 1.0 - param.pos->y) * delatDist.y;
 		}
 		while (!hit)
 		{
@@ -81,25 +80,25 @@ void	draw_line(t_param param)
 				map.y += step.y;
 				side = 1;
 			}
-			if (worldMap[map.x][map.y] > 0)
+			if (worldMap[(int)map.x][(int)map.y] > 0)
 				hit = 1;
 		}
 		if (side == 0)
-			perpWallDist = (map.x - param.pos.x + (1 - step.x) / 2) / rayDir.x;
+			perpWallDist = (map.x - param.pos->x + (1 - step.x) / 2) / rayDir.x;
 		else
-			perpWallDist = (map.y - param.pos.y + (1 - step.y) / 2) / rayDir.y;
-		lineHeight = (int)(param.window_l / perpWallDist);
+			perpWallDist = (map.y - param.pos->y + (1 - step.y) / 2) / rayDir.y;
+		lineHeight = (int)(SCREEN_H / perpWallDist);
 		drawStart = -lineHeight / 2 + SCREEN_H / 2;
 		if (drawStart < 0)
 			drawStart = 0;
 		drawEnd = lineHeight / 2 + SCREEN_H / 2;
 		if (drawEnd >= SCREEN_H)
 			drawEnd = SCREEN_H - 1;
-		if (side == 1)
-			color = param.color_ceiling;
-		else
-			color = param.color_floor;
-		verLine(cur, drawStart, drawEnd, param);
+		// if (side == 1)
+		// 	color = param.color_ceiling;
+		// else
+		// 	color = param.color_floor;
+		verLine(cur, drawStart, drawEnd, &param);
 		cur++;
 	}
 }

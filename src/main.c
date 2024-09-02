@@ -1,20 +1,10 @@
 #include "../cub.h"
 
-int worldMap[10][10] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-};
+
 
 int	main(int ac, char **av)
 {
+	(void)av;
 	t_param	param;
 	/* Pseudo code
 	1. parsing the map(.cub file) -> if success, go to step 2. else, print error message "Error\n" and exit the program

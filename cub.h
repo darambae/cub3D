@@ -18,18 +18,25 @@
 #define SCREEN_W 640
 #define SCREEN_H 480
 
+int worldMap[10][10] = {
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+};
+
 typedef struct s_map
 {
 	double	x;
 	double	y;
 	double	z;
 }			t_map;
-
-typedef struct s_vector
-{
-	double	x;
-	double	y;
-}	t_vector;
 
 typedef struct s_param
 {
@@ -47,10 +54,13 @@ typedef struct s_param
 
 }	t_param;
 
+//map parsing
+void	map_parsing(t_param *param, char *line);
+
 //vector calculation
-t_vector	addVectors(t_vector a, t_vector b);
-t_vector	subVectors(t_vector a, t_vector b);
-t_vector	scaleVectors(t_vector a, double n);
+t_map	addVectors(t_map a, t_map b);
+t_map	subVectors(t_map a, t_map b);
+t_map	scaleVectors(t_map a, double n);
 
 //initializing parameters by reading .cub file
 void	init_param(t_param *param);
