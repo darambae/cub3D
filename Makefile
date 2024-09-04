@@ -6,7 +6,7 @@
 #    By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/28 15:55:13 by dabae             #+#    #+#              #
-#    Updated: 2024/09/02 09:29:31 by dabae            ###   ########.fr        #
+#    Updated: 2024/09/02 12:52:34 by dabae            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 #------------------------------------------------------------------------------#
 NAME = cub3D
 
-CC = gcc
+CC = gcc -g
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a
 GET_NEXT_LINE_DIR = get_next_line
@@ -49,6 +49,6 @@ fclean: clean
 	$(MAKE) fclean -C ./libft 
 	@$(RM) -f $(NAME)
 
-re: fclean all bonus
+re: fclean all
 
 .PHONY: all clean fclean re

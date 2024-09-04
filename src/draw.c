@@ -1,104 +1,113 @@
 #include "../cub.h"
 
-void	verLine(int x, int drawStart, int drawEnd, t_param *param)
+void	my_mlxx_pixel_put(t_param *param, int x, int y, int color)
 {
-	int	y;
+	char	*dst;
+
+	dst = param->addr + (y * SCREEN_W + x) * (param->bits_per_pixel / 8);
+	*(unsigned int *)dst = color;
+}
+
+void	verline(t_param *param, int x, int color)
+{
+	double	y;
 
 	y = 0;
-	while (y < drawStart)
+	while (y < param->draw_start)
 	{
-		mlx_pixel_put(param->mlx, param->window, x, y, param->color_ceiling);
-		y++;
+		my_mlxx_pixel_put(param, x, y, param->color_ceiling);
+		y += 0.1;
 	}
-	while (y < drawEnd)
+	while (y < param->draw_end)
 	{
-		mlx_pixel_put(param->mlx, param->window, x, y, create_rgb(255, 255, 255));
-		y++;
+		my_mlxx_pixel_put(param, x, y, color);
+		y += 0.1;
 	}
 	while (y < SCREEN_H)
 	{
-		mlx_pixel_put(param->mlx, param->window, x, y, param->color_floor);
-		y++;
+		my_mlxx_pixel_put(param, x, y, param->color_floor);
+		y += 0.1;
 	}
 }
 
-void	draw_line(t_param param)
+
+void	draw_line(t_param *param)
 {
 	int			cur;
-	double		cameraX;
-	t_map		rayDir;
+	double		camera_x;
+	t_map		ray_dir;
 	t_map		map;
-	t_map		delatDist;
-	t_map		sideDist;
+	t_map		delat_dist;
+	t_map		side_dist;
 	t_map		step;
+	int			color;
 	int			hit;
 	int			side;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
-	double		perpWallDist;
+	int			line_height;
+	double		perpWall_dist;
 
 	cur = 0;
 	while (cur < SCREEN_W)
 	{
-		cameraX = 2 * cur / (double)SCREEN_W;
-		rayDir = addVectors(*param.dir, scaleVectors(*param.plane, cameraX));
-		map = (t_map){(int)param.pos->x, (int)param.pos->y, 0};
-		delatDist = (t_map){fabs(1 / rayDir.x), fabs(1 / rayDir.y), 0};
+		camera_x = 2 * cur / (double)SCREEN_W;
+		ray_dir = addVectors(*param->dir, scaleVectors(*param->plane, camera_x));
+		map = (t_map){(int)param->pos->x, (int)param->pos->y};
+		delat_dist = (t_map){fabs(1 / ray_dir.x), fabs(1 / ray_dir.y)};
 		hit = 0;
-		if (rayDir.x < 0)
+		if (ray_dir.x < 0)
 		{
 			step.x = -1;
-			sideDist.x = (param.pos->x - map.x) * delatDist.x;
+			side_dist.x = (param->pos->x - map.x) * delat_dist.x;
 		}
 		else
 		{
 			step.x = 1;
-			sideDist.x = (map.x + 1.0 - param.pos->x) * delatDist.x;
+			side_dist.x = (map.x + 1.0 - param->pos->x) * delat_dist.x;
 		}
-		if (rayDir.y < 0)
+		if (ray_dir.y < 0)
 		{
 			step.y = -1;
-			sideDist.y = (param.pos->y - map.y) * delatDist.y;
+			side_dist.y = (param->pos->y - map.y) * delat_dist.y;
 		}
 		else
 		{
 			step.y = 1;
-			sideDist.y = (map.y + 1.0 - param.pos->y) * delatDist.y;
+			side_dist.y = (map.y + 1.0 - param->pos->y) * delat_dist.y;
 		}
 		while (!hit)
 		{
-			if (sideDist.x < sideDist.y)
+			if (side_dist.x < side_dist.y)
 			{
-				sideDist.x += delatDist.x;
+				side_dist.x += delat_dist.x;
 				map.x += step.x;
 				side = 0;
 			}
 			else
 			{
-				sideDist.y += delatDist.y;
+				side_dist.y += delat_dist.y;
 				map.y += step.y;
 				side = 1;
 			}
-			if (worldMap[(int)map.x][(int)map.y] > 0)
+			if (world_map[(int)map.x][(int)map.y] > 0)
 				hit = 1;
 		}
 		if (side == 0)
-			perpWallDist = (map.x - param.pos->x + (1 - step.x) / 2) / rayDir.x;
+			perpWall_dist = (map.x - param->pos->x + (1 - step.x) / 2) / ray_dir.x;
 		else
-			perpWallDist = (map.y - param.pos->y + (1 - step.y) / 2) / rayDir.y;
-		lineHeight = (int)(SCREEN_H / perpWallDist);
-		drawStart = -lineHeight / 2 + SCREEN_H / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		drawEnd = lineHeight / 2 + SCREEN_H / 2;
-		if (drawEnd >= SCREEN_H)
-			drawEnd = SCREEN_H - 1;
-		// if (side == 1)
-		// 	color = param.color_ceiling;
-		// else
-		// 	color = param.color_floor;
-		verLine(cur, drawStart, drawEnd, &param);
+			perpWall_dist = (map.y - param->pos->y + (1 - step.y) / 2) / ray_dir.y;
+		line_height = (int)(SCREEN_H / perpWall_dist);
+		param->draw_start = -line_height / 2 + SCREEN_H / 2;
+		if (param->draw_start < 0)
+			param->draw_start = 0;
+		param->draw_end = line_height / 2 + SCREEN_H / 2;
+		if (param->draw_end >= SCREEN_H)
+			param->draw_end = SCREEN_H - 1;
+		if (side == 1)
+			color = param->pattern_y;
+		else
+			color = param->pattern_x;
+		verline(param, cur, color);
 		cur++;
 	}
+	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
 }
