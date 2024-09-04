@@ -40,6 +40,6 @@ void	init_param(t_param *param)
 	param->plane->y = param->fov;
 	param->color_floor = create_rgb(200, 200, 150);
 	param->color_ceiling = create_rgb(60, 205, 200);
-	param->pattern_y = create_rgb(255, 0, 0);
-	param->pattern_x = create_rgb(0, 255, 0);
+	param->texture_y = "../assets/mountain_square.xmp";
+	param->texture_x = "../assets/mountain_square.xmp";
 }

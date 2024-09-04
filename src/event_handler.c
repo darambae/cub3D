@@ -1,15 +1,5 @@
 #include "../cub.h"
 
-void	reset(t_param *param)
-{
-	param->pos->x = 3;
-	param->pos->y = 8;
-	param->dir->x = -1;
-	param->dir->y = 0;
-	param->plane->x = 0;
-	param->plane->y = param->fov;
-
-}
 
 int	close_window(t_param *param)
 {

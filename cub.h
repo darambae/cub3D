@@ -52,8 +52,8 @@ typedef struct s_param
 	t_map	*dir;
 	int		color_floor;
 	int		color_ceiling;
-	int		pattern_y;
-	int		pattern_x;
+	char	*texture_y;
+	char	*texture_x;
 	int		draw_start;
 	int		draw_end;
 	int		size_line;
