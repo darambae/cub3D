@@ -23,6 +23,7 @@ int	close_window(t_param *param)
 	mlx_destroy_image(param->mlx, param->img);
 	mlx_destroy_window(param->mlx, param->window);
 	mlx_destroy_display(param->mlx);
+	free(param->mlx);
 	exit(0);
 }
 

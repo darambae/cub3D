@@ -49,7 +49,7 @@ void	draw_line(t_param *param)
 	cur = 0;
 	while (cur < SCREEN_W)
 	{
-		camera_x = 2 * cur / (double)SCREEN_W;
+		camera_x = 2 * cur / (double)SCREEN_W - 1;
 		ray_dir = addVectors(*param->dir, scaleVectors(*param->plane, camera_x));
 		map = (t_map){(int)param->pos->x, (int)param->pos->y};
 		delat_dist = (t_map){fabs(1 / ray_dir.x), fabs(1 / ray_dir.y)};

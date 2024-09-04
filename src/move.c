@@ -34,7 +34,7 @@ int	move_back_forward(t_param *param, bool forward)
 		if (world_map[(int)param->pos->x][(int)(param->pos->y - param->dir->y * move_speed)] == 0)
 			param->pos->y -= param->dir->y * move_speed;
 	}
-	return 0;
+	return (0);
 }
 
 int	move_left_right(t_param *param, bool right)
