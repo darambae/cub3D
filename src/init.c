@@ -42,7 +42,7 @@ void	init_texture(t_param *param)
 	}
 	param->tex[0].path = "./assets/spring.xpm";
 	param->tex[1].path = "./assets/summer.xpm";
-	param->tex[2].path = "./assets/autumn.xpm";
+	param->tex[2].path = "./assets/summer.xpm";
 	param->tex[3].path = "./assets/winter.xpm";
 }
 
@@ -98,6 +98,6 @@ void	init_param(t_param *param)
 	//parsing part
 	param->pos->x = 6;
 	param->pos->y = 5;
-	param->color_floor = create_rgb(200, 200, 150);
-	param->color_ceiling = create_rgb(60, 205, 200);
+	param->color_floor = create_rgb(150, 185, 81);
+	param->color_ceiling = create_rgb(161, 223, 248);
 }

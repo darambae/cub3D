@@ -117,7 +117,7 @@ void	draw_line(t_param *param)
 		else
 			perpWall_dist = (map.y - param->pos->y + (1 - step.y) / 2) / param->ray_dir.y;
 		line_height = (int)(SCREEN_H / perpWall_dist);
-		
+
 		param->draw_start = -line_height / 2 + SCREEN_H / 2;
 		if (param->draw_start < 0)
 			param->draw_start = 0;
