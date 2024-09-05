@@ -40,6 +40,10 @@ void	init_texture(t_param *param)
 		param->tex[i].endian = 0;
 		i++;
 	}
+	param->tex[0].path = "./assets/spring.xpm";
+	param->tex[1].path = "./assets/summer.xpm";
+	param->tex[2].path = "./assets/autumn.xpm";
+	param->tex[3].path = "./assets/winter.xpm";
 }
 
 bool	alloc_param(t_param *param)
@@ -82,8 +86,6 @@ void	init_param(t_param *param)
 	if (!alloc_param(param) || !set_screen(param))
 		exit(1);
 	init_texture(param);
-	for (int i = 0; i < 4; i++)
-		param->tex[i].path = "./assets/mountain_2_.xpm";
 	if (!load_texture(param))
 		exit(1);
 	param->draw_start = 0;
