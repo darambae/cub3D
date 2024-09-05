@@ -8,7 +8,7 @@ void	my_mlxx_pixel_put(t_param *param, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	print_wall(t_param *param, int y, int tex_num, double wall_x)
+int	get_text_pix(t_param *param, int y, int tex_num, double wall_x)
 {
 	int		color;
 	int		tex_x;
@@ -42,7 +42,7 @@ void	verline(t_param *param, int x, int tex_num, double wall_x)
 	}
 	while (y < param->draw_end)
 	{
-		my_mlxx_pixel_put(param, x, y, print_wall(param, y, tex_num, wall_x));
+		my_mlxx_pixel_put(param, x, y, get_text_pix(param, y, tex_num, wall_x));
 		y += 0.1;
 	}
 	while (y < SCREEN_H)

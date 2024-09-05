@@ -15,8 +15,8 @@
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
-# define SCREEN_W 512
-# define SCREEN_H 512
+# define SCREEN_W 1024
+# define SCREEN_H 1024
 
 # define LEFT 97
 # define RIGHT 100
