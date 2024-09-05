@@ -15,8 +15,8 @@
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
-# define SCREEN_W 640
-# define SCREEN_H 480
+# define SCREEN_W 512
+# define SCREEN_H 512
 
 # define LEFT 97
 # define RIGHT 100
@@ -35,29 +35,42 @@ typedef struct s_map
 	//double	z;
 }			t_map;
 
-typedef struct s_param
+typedef struct s_texture
 {
-	void	*mlx;
-	void	*window;
+	char	*path;
+	int		w;
+	int		h;
 	void	*img;
 	char	*addr;
-
 	int		bits_per_pixel;
-	t_map	**map;
-	int		map_w;
-	int		map_l;
-	double	fov;
-	t_map	*pos;
-	t_map	*plane;
-	t_map	*dir;
-	int		color_floor;
-	int		color_ceiling;
-	char	*texture_y;
-	char	*texture_x;
-	int		draw_start;
-	int		draw_end;
 	int		size_line;
 	int		endian;
+}	t_texture;
+
+typedef struct s_param
+{
+	void		*mlx;
+	void		*window;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+
+	t_map		**map;
+	int			map_w;
+	int			map_l;
+	double		fov;
+	t_map		*pos;
+	t_map		*plane;
+	t_map		*dir;
+	t_map		ray_dir;
+	int			side;
+	int			color_floor;
+	int			color_ceiling;
+	t_texture	*tex;
+	int			draw_start;
+	int			draw_end;
+	int			size_line;
+	int			endian;
 }	t_param;
 
 //map parsing
@@ -75,8 +88,8 @@ void	draw_line(t_param *param);
 int		move_back_forward(t_param *param, bool forward);
 int		move_left_right(t_param *param, bool right);
 void	rotate(t_param *param, double angle);
-void	reset(t_param *param);
-
 void	event_handler(t_param *param);
+
+int		create_rgb(int r, int g, int b);
 
 #endif

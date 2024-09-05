@@ -1,5 +1,12 @@
 #include "../cub.h"
 
+void	free_tex(t_param *param)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		mlx_destroy_image(param->mlx, param->tex[i].img);
+	}
+}
 
 int	close_window(t_param *param)
 {
@@ -10,9 +17,11 @@ int	close_window(t_param *param)
 	for (int i = 0; i < param->map_w; i++)
 		free(param->map[i]);
 	free(param->map);
+	free_tex(param);
 	mlx_destroy_image(param->mlx, param->img);
 	mlx_destroy_window(param->mlx, param->window);
 	mlx_destroy_display(param->mlx);
+	free(param->tex);
 	free(param->mlx);
 	exit(0);
 }
@@ -40,7 +49,7 @@ int	key_press(int keycode, t_param *param)
 int	rerendering(int keycode, t_param *param)
 {
 	ft_bzero(param->addr, SCREEN_W * SCREEN_H * sizeof(int));
-	key_press(keycode, param);	
+	key_press(keycode, param);
 	draw_line(param);
 	return (0);
 }
