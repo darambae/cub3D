@@ -28,12 +28,11 @@
 
 extern int	world_map[9][18];
 
-typedef struct s_map
+typedef struct s_vec
 {
 	double	x;
 	double	y;
-	//double	z;
-}			t_map;
+}			t_vec;
 
 typedef struct s_texture
 {
@@ -55,14 +54,13 @@ typedef struct s_param
 	char		*addr;
 	int			bits_per_pixel;
 
-	t_map		**map;
 	int			map_w;
 	int			map_l;
 	double		fov;
-	t_map		*pos;
-	t_map		*plane;
-	t_map		*dir;
-	t_map		ray_dir;
+	t_vec		*pos;
+	t_vec		*plane;
+	t_vec		*dir;
+	t_vec		ray_dir;
 	int			side;
 	int			color_floor;
 	int			color_ceiling;
@@ -76,9 +74,9 @@ typedef struct s_param
 //map parsing
 
 //vector calculation
-t_map	addVectors(t_map a, t_map b);
-t_map	subVectors(t_map a, t_map b);
-t_map	scaleVectors(t_map a, double n);
+t_vec	addVectors(t_vec a, t_vec b);
+t_vec	subVectors(t_vec a, t_vec b);
+t_vec	scaleVectors(t_vec a, double n);
 
 //initializing parameters by reading .cub file
 void	init_param(t_param *param);

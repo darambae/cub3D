@@ -1,27 +1,27 @@
 
 #include "../cub.h"
 
-t_map	addVectors(t_map a, t_map b)
+t_vec	addVectors(t_vec a, t_vec b)
 {
-	t_map	res;
+	t_vec	res;
 
 	res.x = a.x + b.x;
 	res.y = a.y + b.y;
 	return (res);
 }
 
-t_map	subVectors(t_map a, t_map b)
+t_vec	subVectors(t_vec a, t_vec b)
 {
-	t_map	res;
+	t_vec	res;
 
 	res.x = a.x - b.x;
 	res.y = a.y - b.y;
 	return (res);
 }
 
-t_map	scaleVectors(t_map a, double n)
+t_vec	scaleVectors(t_vec a, double n)
 {
-	t_map	res;
+	t_vec	res;
 
 	res.x = a.x * n;
 	res.y = a.y * n;

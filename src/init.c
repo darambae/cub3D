@@ -44,16 +44,13 @@ void	init_texture(t_param *param)
 
 bool	alloc_param(t_param *param)
 {
-	param->map = (t_map **)malloc(sizeof(t_map *) * param->map_w);
-	for (int i = 0; i < param->map_w; i++)
-		param->map[i] = (t_map *)malloc(sizeof(t_map) * param->map_l);
-	param->pos = (t_map *)malloc(sizeof(t_map));
-	param->dir = (t_map *)malloc(sizeof(t_map));
-	param->plane = (t_map *)malloc(sizeof(t_map));
+	param->pos = (t_vec *)malloc(sizeof(t_vec));
+	param->dir = (t_vec *)malloc(sizeof(t_vec));
+	param->plane = (t_vec *)malloc(sizeof(t_vec));
 	param->tex = (t_texture *)malloc(sizeof(t_texture) * 4);
 
-	if (param->map == NULL || param->pos == NULL || param->dir == NULL \
-		|| param->plane == NULL || param->tex == NULL)
+	if (param->pos == NULL || param->dir == NULL || param->plane == NULL \
+		|| param->tex == NULL)
 	{
 		printf("Error\n");
 		return (false);
@@ -86,7 +83,7 @@ void	init_param(t_param *param)
 		exit(1);
 	init_texture(param);
 	for (int i = 0; i < 4; i++)
-		param->tex[i].path = "./assets/mountain_square.xpm";
+		param->tex[i].path = "./assets/mountain_2_.xpm";
 	if (!load_texture(param))
 		exit(1);
 	param->draw_start = 0;
@@ -97,7 +94,6 @@ void	init_param(t_param *param)
 	param->plane->x = 0;
 	param->plane->y = param->fov;
 	//parsing part
-	
 	param->pos->x = 6;
 	param->pos->y = 5;
 	param->color_floor = create_rgb(200, 200, 150);

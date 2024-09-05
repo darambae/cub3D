@@ -14,10 +14,6 @@ int	close_window(t_param *param)
 	free(param->pos);
 	free(param->dir);
 	free(param->plane);
-	for (int i = 0; i < param->map_w; i++)
-		free(param->map[i]);
-	free(param->map);
-	free_tex(param);
 	mlx_destroy_image(param->mlx, param->img);
 	mlx_destroy_window(param->mlx, param->window);
 	mlx_destroy_display(param->mlx);

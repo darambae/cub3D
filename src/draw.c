@@ -57,10 +57,10 @@ void	draw_line(t_param *param)
 {
 	int			cur;
 	double		camera_x;
-	t_map		map;
-	t_map		delta_dist;
-	t_map		side_dist;
-	t_map		step;
+	t_vec		map;
+	t_vec		delta_dist;
+	t_vec		side_dist;
+	t_vec		step;
 	int			tex_num;
 	int			hit;
 	int			line_height;
@@ -72,8 +72,8 @@ void	draw_line(t_param *param)
 	{
 		camera_x = 2 * cur / (double)SCREEN_W - 1;
 		param->ray_dir = addVectors(*param->dir, scaleVectors(*param->plane, camera_x));
-		map = (t_map){(int)param->pos->x, (int)param->pos->y};
-		delta_dist = (t_map){fabs(1 / param->ray_dir.x), fabs(1 / param->ray_dir.y)};
+		map = (t_vec){(int)param->pos->x, (int)param->pos->y};
+		delta_dist = (t_vec){fabs(1 / param->ray_dir.x), fabs(1 / param->ray_dir.y)};
 		hit = 0;
 		if (param->ray_dir.x < 0)
 		{
@@ -117,6 +117,7 @@ void	draw_line(t_param *param)
 		else
 			perpWall_dist = (map.y - param->pos->y + (1 - step.y) / 2) / param->ray_dir.y;
 		line_height = (int)(SCREEN_H / perpWall_dist);
+		
 		param->draw_start = -line_height / 2 + SCREEN_H / 2;
 		if (param->draw_start < 0)
 			param->draw_start = 0;
