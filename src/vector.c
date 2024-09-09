@@ -27,3 +27,12 @@ t_vec	scale_vec(t_vec a, double n)
 	res.y = a.y * n;
 	return (res);
 }
+
+t_vec	divide_vec(t_vec a, double n)
+{
+	t_vec	res;
+
+	res.x = a.x / n;
+	res.y = a.y / n;
+	return (res);
+}
