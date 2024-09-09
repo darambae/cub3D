@@ -16,7 +16,8 @@ bool	load_texture(t_param *param)
 			return (false);
 		}
 		param->tex[i].addr = mlx_get_data_addr(param->tex[i].img, \
-			&param->tex[i].bits_per_pixel, &param->tex[i].size_line, &param->tex[i].endian);
+			&param->tex[i].bits_per_pixel, &param->tex[i].size_line, \
+			&param->tex[i].endian);
 		i++;
 	}
 	return (true);
@@ -48,13 +49,8 @@ void	init_texture(t_param *param)
 
 bool	alloc_param(t_param *param)
 {
-	param->pos = (t_vec *)malloc(sizeof(t_vec));
-	param->dir = (t_vec *)malloc(sizeof(t_vec));
-	param->plane = (t_vec *)malloc(sizeof(t_vec));
 	param->tex = (t_texture *)malloc(sizeof(t_texture) * 4);
-
-	if (param->pos == NULL || param->dir == NULL || param->plane == NULL \
-		|| param->tex == NULL)
+	if (param->tex == NULL)
 	{
 		printf("Error\n");
 		return (false);
@@ -88,16 +84,16 @@ void	init_param(t_param *param)
 	init_texture(param);
 	if (!load_texture(param))
 		exit(1);
-	param->draw_start = 0;
-	param->draw_end = 0;
+	param->ray.draw_start = 0;
+	param->ray.draw_end = 0;
 	param->fov = 0.66;
-	param->dir->x = -1;
-	param->dir->y = 0;
-	param->plane->x = 0;
-	param->plane->y = param->fov;
+	param->dir.x = -1;
+	param->dir.y = 0;
+	param->plane.x = 0;
+	param->plane.y = param->fov;
 	//parsing part
-	param->pos->x = 6;
-	param->pos->y = 5;
+	param->pos.x = 6;
+	param->pos.y = 5;
 	param->color_floor = create_rgb(150, 185, 81);
 	param->color_ceiling = create_rgb(161, 223, 248);
 }

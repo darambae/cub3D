@@ -1,7 +1,7 @@
 
 #include "../cub.h"
 
-t_vec	addVectors(t_vec a, t_vec b)
+t_vec	add_vec(t_vec a, t_vec b)
 {
 	t_vec	res;
 
@@ -10,7 +10,7 @@ t_vec	addVectors(t_vec a, t_vec b)
 	return (res);
 }
 
-t_vec	subVectors(t_vec a, t_vec b)
+t_vec	sub_vec(t_vec a, t_vec b)
 {
 	t_vec	res;
 
@@ -19,7 +19,7 @@ t_vec	subVectors(t_vec a, t_vec b)
 	return (res);
 }
 
-t_vec	scaleVectors(t_vec a, double n)
+t_vec	scale_vec(t_vec a, double n)
 {
 	t_vec	res;
 
@@ -27,4 +27,3 @@ t_vec	scaleVectors(t_vec a, double n)
 	res.y = a.y * n;
 	return (res);
 }
-
