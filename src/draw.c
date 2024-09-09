@@ -1,5 +1,6 @@
 #include "../cub.h"
-int	get_text_pix(t_param *param, int y, t_texture t, double wall_x)
+
+int	get_text_pix(t_ray r, int y, t_texture t, double wall_x)
 {
 	int		color;
 	int		tex_x;
@@ -11,15 +12,15 @@ int	get_text_pix(t_param *param, int y, t_texture t, double wall_x)
 	tex_x = (int)(wall_x * (double)t.w);
 
 	// Reverse texture horizontally based on the ray's direction and side hit
-	if ((param->ray.side == 0 && param->ray.dir.x > 0) || 
-		(param->ray.side == 1 && param->ray.dir.y < 0))
+	if ((r.side == 0 && r.dir.x > 0) || 
+		(r.side == 1 && r.dir.y < 0))
 		tex_x = t.w - tex_x - 1;
 
 	// Step defines how much we move on the texture per pixel drawn vertically
-	step = 1.0 * t.h / (param->ray.draw_end - param->ray.draw_start);
+	step = 1.0 * t.h / (r.draw_end - r.draw_start);
 
 	// Calculate the texture's y position at the current y value of the wall
-	tex_pos = (y - param->ray.draw_start) * step;
+	tex_pos = (y - r.draw_start) * step;
 	tex_y = (int)(tex_pos) % t.h;
 
 	// Retrieve the color from the texture based on the calculated tex_x and tex_y
@@ -29,8 +30,7 @@ int	get_text_pix(t_param *param, int y, t_texture t, double wall_x)
 }
 
 
-
-// int	get_text_pix(t_param *param, int y, t_texture t, double wall_x)
+// int	get_text_pix(t_ray r, int y, t_texture t, double wall_x)
 // {
 // 	int		color;
 // 	int		tex_x;
@@ -39,11 +39,11 @@ int	get_text_pix(t_param *param, int y, t_texture t, double wall_x)
 // 	double	step;
 
 // 	tex_x = (int)(wall_x * (double)t.w);
-// 	if ((param->ray.side == 0 && param->ray.dir.x > 0) 
-// 		|| (param->ray.side == 1 && param->ray.dir.y < 0))
+// 	if ((r.side == 0 && r.dir.x > 0) 
+// 		|| (r.side == 1 && r.dir.y < 0))
 // 		tex_x = t.w - tex_x - 1;
-// 	step = 1.0 * t.h / (param->ray.draw_end - param->ray.draw_start + 1);
-// 	tex_pos = (y - param->ray.draw_start) * step;
+// 	step = 1.0 * t.h / (r.draw_end - r.draw_start + 1);
+// 	tex_pos = (y - r.draw_start) * step;
 // 	tex_y = (int)(tex_pos) % t.h;
 // 	if (tex_y < 0)
 // 		tex_y = 0;
@@ -87,7 +87,7 @@ void	verline(t_param *param, int x, t_texture t, double wall_x)
 	}
 	while (y < param->ray.draw_end)
 	{
-		my_mlxx_pixel_put(param, x, y, get_text_pix(param, y, t, wall_x));
+		my_mlxx_pixel_put(param, x, y, get_text_pix(param->ray, y, t, wall_x));
 		y++;
 	}
 	while (y < SCREEN_H)

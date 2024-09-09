@@ -7,44 +7,42 @@ int	is_valid_position(double x, double y)
 }
 
 // Function to handle forward and backward movement
-int	move_back_forward(t_param *p, bool forward)
+void	move_back_forward(t_param *p, bool forward)
 {
 	double	sp;
 	t_vec	new_pos;
 
 	sp = 0.1;
-	if (p->ray.perp_wall_dist > 0.6)
-	{
-		if (forward)
-			new_pos = add_vec(p->pos, scale_vec(p->dir, sp));
-		else
-			new_pos = sub_vec(p->pos, scale_vec(p->dir, sp));
-	}
+	if (forward && p->ray.perp_wall_dist > 0.5)
+		new_pos = add_vec(p->pos, scale_vec(p->dir, sp));
+	else if (!forward)
+		new_pos = sub_vec(p->pos, scale_vec(p->dir, sp));
 	else
-		return (0);
+		return ;
 	if (is_valid_position(new_pos.x, p->pos.y) && \
 		is_valid_position(p->pos.x, new_pos.y))
 		p->pos = new_pos;
-	return (0);
 }
 
 // Function to handle left and right movement
-int	move_left_right(t_param *p, bool right)
+void	move_left_right(t_param *p, bool right)
 {
 	double	sp;
 	t_vec	new_pos;
 
 	sp = 0.1;
-	if (right && p->ray.perp_wall_dist > 0.6)
-		new_pos = add_vec(p->pos, scale_vec(p->plane, sp));
-	else if (!right && p->ray.perp_wall_dist > 0.6)
-		new_pos = sub_vec(p->pos, scale_vec(p->plane, sp));
-	else
-		return (0);
+	if (p->ray.perp_wall_dist > 0.4)
+	{
+		if (right)
+			new_pos = add_vec(p->pos, scale_vec(p->plane, sp));
+		else if (!right)
+			new_pos = sub_vec(p->pos, scale_vec(p->plane, sp));
+		else
+			return ;
+	}
 	if (is_valid_position(new_pos.x, p->pos.y) && \
 		is_valid_position(p->pos.x, new_pos.y))
 		p->pos = new_pos;
-	return (0);
 }
 
 

@@ -95,13 +95,13 @@ void		init_param(t_param *param);
 int			create_rgb(int r, int g, int b);
 
 void		cast_rays_and_render(t_param *param);
-int			move_back_forward(t_param *param, bool forward);
-int			move_left_right(t_param *param, bool right);
+void		move_back_forward(t_param *param, bool forward);
+void		move_left_right(t_param *param, bool right);
 void		rotate(t_param *param, double angle);
 void		event_handler(t_param *param);
 void		verline(t_param *param, int x, t_texture t, double wall_x);
 t_texture	get_wall_dir(t_param *param);
-int			get_text_pix(t_param *param, int y, t_texture t, double wall_x);
+int			get_text_pix(t_ray r, int y, t_texture t, double wall_x);
 void		setup_ray(t_param *param, int cur);
 
 //calculation
