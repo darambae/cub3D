@@ -31,7 +31,7 @@ void	move_left_right(t_param *p, bool right)
 	t_vec	new_pos;
 
 	sp = 0.1;
-	if (p->ray.perp_wall_dist > 0.4)
+	if (p->ray.perp_wall_dist > 0.5)
 	{
 		if (right)
 			new_pos = add_vec(p->pos, scale_vec(p->plane, sp));

@@ -41,10 +41,10 @@ void	init_texture(t_param *param)
 		param->tex[i].endian = 0;
 		i++;
 	}
-	param->tex[0].path = "./assets/spring.xpm";
-	param->tex[1].path = "./assets/summer.xpm";
-	param->tex[2].path = "./assets/summer.xpm";
-	param->tex[3].path = "./assets/winter.xpm";
+	param->tex[0].path = "./assets/summer_256.xpm";
+	param->tex[1].path = "./assets/summer_256.xpm";
+	param->tex[2].path = "./assets/summer_256.xpm";
+	param->tex[3].path = "./assets/summer_256.xpm";
 }
 
 bool	alloc_param(t_param *param)
