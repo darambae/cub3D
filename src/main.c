@@ -36,7 +36,6 @@ int	main(int ac, char **av)
 	//parsing the map
 	//initialize the parameters
 	init_param(&param);
-
 	cast_rays_and_render(&param);
 	event_handler(&param);
 	mlx_loop(param.mlx);

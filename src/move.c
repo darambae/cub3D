@@ -31,15 +31,12 @@ void	move_left_right(t_param *p, bool right)
 	t_vec	new_pos;
 
 	sp = 0.1;
-	if (p->ray.perp_wall_dist > 0.5)
-	{
-		if (right)
-			new_pos = add_vec(p->pos, scale_vec(p->plane, sp));
-		else if (!right)
-			new_pos = sub_vec(p->pos, scale_vec(p->plane, sp));
-		else
-			return ;
-	}
+	if (right)
+		new_pos = add_vec(p->pos, scale_vec(p->plane, sp));
+	else if (!right)
+		new_pos = sub_vec(p->pos, scale_vec(p->plane, sp));
+	else
+		return ;
 	if (is_valid_position(new_pos.x, p->pos.y) && \
 		is_valid_position(p->pos.x, new_pos.y))
 		p->pos = new_pos;

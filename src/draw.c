@@ -29,31 +29,6 @@ int	get_text_pix(t_ray r, int y, t_texture t, double wall_x)
 	return (color);
 }
 
-
-// int	get_text_pix(t_ray r, int y, t_texture t, double wall_x)
-// {
-// 	int		color;
-// 	int		tex_x;
-// 	int		tex_y;
-// 	double	tex_pos;
-// 	double	step;
-
-// 	tex_x = (int)(wall_x * (double)t.w);
-// 	if ((r.side == 0 && r.dir.x > 0) 
-// 		|| (r.side == 1 && r.dir.y < 0))
-// 		tex_x = t.w - tex_x - 1;
-// 	step = 1.0 * t.h / (r.draw_end - r.draw_start + 1);
-// 	tex_pos = (y - r.draw_start) * step;
-// 	tex_y = (int)(tex_pos) % t.h;
-// 	if (tex_y < 0)
-// 		tex_y = 0;
-// 	if (tex_y >= t.h)
-// 		tex_y = t.h - 1;
-// 	color = *(unsigned int *)(t.addr + (tex_y * t.w + tex_x) * 
-// 		(t.bits_per_pixel / 8));
-// 	return (color);
-// }
-
 t_texture	get_wall_dir(t_param *param)
 {
 	int	tex_num;

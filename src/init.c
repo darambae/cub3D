@@ -41,10 +41,10 @@ void	init_texture(t_param *param)
 		param->tex[i].endian = 0;
 		i++;
 	}
-	param->tex[0].path = "./assets/summer_256.xpm";
-	param->tex[1].path = "./assets/summer_256.xpm";
-	param->tex[2].path = "./assets/summer_256.xpm";
-	param->tex[3].path = "./assets/summer_256.xpm";
+	param->tex[0].path = "./assets/spring_256.xpm";
+	param->tex[1].path = "./assets/spring_256.xpm";
+	param->tex[2].path = "./assets/spring_256.xpm";
+	param->tex[3].path = "./assets/spring_256.xpm";
 }
 
 bool	alloc_param(t_param *param)
@@ -77,7 +77,7 @@ bool	set_screen(t_param *param)
 void	init_param(t_param *param)
 {
 	param->map_w = 9;
-	param->map_l = 19;
+	param->map_l = 18;
 	//set default texture path temporarily
 	if (!alloc_param(param) || !set_screen(param))
 		exit(1);
@@ -87,7 +87,7 @@ void	init_param(t_param *param)
 	param->ray.draw_start = 0;
 	param->ray.draw_end = 0;
 	param->fov = 0.66;
-	param->dir.x = -1;
+	param->dir.x = 1;
 	param->dir.y = 0;
 	param->plane.x = 0;
 	param->plane.y = param->fov;

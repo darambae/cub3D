@@ -23,35 +23,6 @@ double	calcul_wall_dist_hei(t_param *param)
 	return (wall_x);
 }
 
-
-// double	calcul_wall_dist_hei(t_param *param)
-// {
-// 	int		line_height;
-// 	double	wall_x;
-// 	t_ray	*r;
-
-// 	r = &param->ray;
-// 	if (r->side == 0)
-// 		r->perp_wall_dist = (r->map.x - param->pos.x + 
-// 			(1 - r->step.x) / 2) / r->dir.x;
-// 	else
-// 		r->perp_wall_dist = (r->map.y - param->pos.y + 
-// 			(1 - r->step.y) / 2) / r->dir.y;
-// 	line_height = (int)(SCREEN_H / r->perp_wall_dist);
-// 	r->draw_start = -line_height / 2 + SCREEN_H / 2;
-// 	if (r->draw_start < 0)
-// 		r->draw_start = 0;
-// 	r->draw_end = line_height / 2 + SCREEN_H / 2;
-// 	if (r->draw_end >= SCREEN_H)
-// 		r->draw_end = SCREEN_H - 1;
-// 	if (r->side == 0)
-// 		wall_x = param->pos.y + r->perp_wall_dist * r->dir.y;
-// 	else
-// 		wall_x = param->pos.x + r->perp_wall_dist * r->dir.x;
-// 	wall_x -= floor(wall_x);
-// 	return (wall_x);
-// }
-
 void	calcul_step_side_dist(t_param *param)
 {
 	t_ray	*ray;
@@ -143,5 +114,6 @@ void	cast_rays_and_render(t_param *param)
 		verline(param, cur, get_wall_dir(param), calcul_wall_dist_hei(param));
 		cur++;
 	}
+	print_minimap(param);
 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
 }
