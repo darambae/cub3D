@@ -1,29 +1,5 @@
 #include "../cub.h"
 
-//in parsing
-bool	load_texture(t_param *param)
-{
-	int		i;
-
-	i = 0;
-	while (i < 4)
-	{
-		param->tex[i].img = mlx_xpm_file_to_image(param->mlx, \
-			param->tex[i].path, &param->tex[i].w, &param->tex[i].h);
-		if (!param->tex[i].img)
-		{
-			printf("Error: Unable to load t from %s\n", param->tex[i].path);
-			return (false);
-		}
-		param->tex[i].addr = mlx_get_data_addr(param->tex[i].img, \
-			&param->tex[i].bits_per_pixel, &param->tex[i].size_line, \
-			&param->tex[i].endian);
-		i++;
-	}
-	return (true);
-}
-
-
 void	init_texture(t_param *param)
 {
 	int		i;
@@ -41,10 +17,11 @@ void	init_texture(t_param *param)
 		param->tex[i].endian = 0;
 		i++;
 	}
+	//0 = north, 1 = east, 2 = south, 3 = west
 	param->tex[0].path = "./assets/spring_256.xpm";
-	param->tex[1].path = "./assets/spring_256.xpm";
-	param->tex[2].path = "./assets/spring_256.xpm";
-	param->tex[3].path = "./assets/spring_256.xpm";
+	param->tex[1].path = "./assets/summer_256.xpm";
+	param->tex[2].path = "./assets/autumn_256.xpm";
+	param->tex[3].path = "./assets/winter_256.xpm";
 }
 
 bool	alloc_param(t_param *param)
@@ -78,10 +55,10 @@ void	init_param(t_param *param)
 {
 	param->map_w = 9;
 	param->map_l = 18;
-	//set default texture path temporarily
 	if (!alloc_param(param) || !set_screen(param))
 		exit(1);
 	init_texture(param);
+	//set default texture path temporarily
 	if (!load_texture(param))
 		exit(1);
 	param->ray.draw_start = 0;
@@ -91,6 +68,8 @@ void	init_param(t_param *param)
 	param->dir.y = 0;
 	param->plane.x = 0;
 	param->plane.y = param->fov;
+	param->mini.scale = 10;
+	param->mini.color = create_rgb(250, 240, 230);
 	//parsing part
 	param->pos.x = 6;
 	param->pos.y = 5;

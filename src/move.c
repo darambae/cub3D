@@ -13,7 +13,7 @@ void	move_back_forward(t_param *p, bool forward)
 	t_vec	new_pos;
 
 	sp = 0.1;
-	if (forward && p->ray.perp_wall_dist > 0.5)
+	if (forward)
 		new_pos = add_vec(p->pos, scale_vec(p->dir, sp));
 	else if (!forward)
 		new_pos = sub_vec(p->pos, scale_vec(p->dir, sp));

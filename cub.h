@@ -92,6 +92,8 @@ typedef struct s_param
 }	t_param;
 
 //map parsing
+bool			load_texture(t_param *param);
+
 
 //vector calculation
 t_vec			add_vec(t_vec a, t_vec b);
@@ -119,7 +121,6 @@ void			get_perp_wall_dist(t_param *param);
 //utils
 int				create_rgb(int r, int g, int b);
 void			my_mlxx_pixel_put(t_param *param, int x, int y, int color);
-unsigned int	blend_color(unsigned int fore, unsigned int back, double alpha);
 unsigned int	get_pixel(t_param *param, int x, int y);
 
 //bonus
