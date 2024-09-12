@@ -29,7 +29,8 @@ int	check_extension(char *av)
 	len = ft_strlen(av);
 	if (len < 4)
 		return (-1);
-	if (ft_strncmp(av + (len - 4), ".cub", 4) =! 0)
+	av = av + len - 4;
+	if (ft_strncmp(av, ".cub", 4) =! 0)
 		return (-1);
 }
 
@@ -45,16 +46,75 @@ int	get_path(char *line, char second_letter, int i, t_param *param)
 	line++;
 	if (*line == second_letter)
 		line++;
-	if (*line != " ")
+	if (!ft_strchr(" \t\n\v\r", *line))//no space after id
 		return (-1);
-	while (ft_strchr(" \t\n\v\r", *line))
+	while (ft_strchr(" \t\n\v\r", *line))//skip space
 		line++;
-	if (!*line)//no texture's path
+	if (!*line)//no texture's path after spaces
 		return (-1);
-	//0 = north, 1 = east, 2 = south, 3 = west
 	param->tex[i].path = ft_strdup(line);
 	param->format[i] = 1;
 	return (0);
+}
+int	get_number(int *n, char *line)
+{
+	*n = 0;
+	if (ft_isdigit(*line))
+	{
+		*n = ft_atoi(line);
+		if (*n < 0 || *n > 255)
+			return (-1);
+		while (ft_isdigit(*line))
+			line++;
+		if (*line == "," && *(line + 1) == " ")
+		{
+			line = line + 2;
+			return (0);
+		}
+		else
+			return (-1);
+	}
+}
+int	get_color(char *line, t_param *param)
+{
+	int		r;
+	int		g;
+	int		b;
+	char	id;
+
+	id = *line;
+	if ((id == "F" && param->format[4] == 0) ||
+		(id == "C" && param->format[5]== 0))
+	{
+		line++;
+		if (!ft_strchr(" \t\n\v\r", *line))//no space after id
+			return (-1);
+		while (ft_strchr(" \t\n\v\r", *line))//skip space
+			line++;
+		if (!*line)//no color after spaces
+			return (-1);
+		if (get_number(&r, line) != -1)
+		{
+			if (get_number(&g, line) != -1)
+			{
+				if (get_number(&b, line) != -1)
+				{
+					if (id == "F")
+					{
+						param->color_floor = create_rgb(r, g, b);
+						param->format[4] = 1;
+					}
+					if (id == "C")
+					{
+						param->color_ceiling = create_rgb(r, g, b);
+						param->format[5] = 1;
+					}
+					return (0);
+				}
+			}
+		}
+	}
+	return (-1);
 }
 int	keep_format(char *line, t_param *param)
 {
@@ -65,18 +125,20 @@ int	keep_format(char *line, t_param *param)
 	i = 0;
 	if (*line == "F" || *line == "C")
 		return (get_color(line, param));
-	else if (*line == "E")
+	else if (*line == "E" && param->format[1] == 0)
 	{
 		second_letter = "A";
 		i++;
 	}
-	else if (*line == "S")
+	else if (*line == "S" && param->format[2] == 0)
 		i = 2;
-	else if (*line == "W")
+	else if (*line == "W" && param->format[3] == 0)
 	{
 		second_letter = "E";
 		i = 3;
 	}
+	if (param->format[i] == 1)
+		return (-1);
 	return (get_path(line, second_letter, i, param));
 }
 
@@ -94,6 +156,14 @@ int	check_format(char *line, t_param *param)
 		return (keep_format(line, param));
 	else
 		return (1);
+}
+
+char	**copy_map(char *line, int fd)
+{
+	//copier la ligne (deja malloc dans gnl)
+	//verifier qu'elle ne contient pas autre chose que 10NSEW
+	//faire tourner gnl, si line non vide, la copier dans un double char apres la line d'avant.
+	
 }
 int	check_texture(t_param *param)
 {
@@ -120,12 +190,12 @@ int	check_texture(t_param *param)
 		if (map == 1)//line not begin by NSWEFC
 		{
 			//check if all texture are filled
-			while(i < 7 && param->format[i] == 1)
+			while(i < 6 && param->format[i] == 1)
 				i++;
-			if (i < 6)
+			if (i != 5)
 				return (-1);
 			//copy map in a char ** to be manipulated and modified
-			param->map = copy_map(line, param->fd);
+			param->map = copy_map(save_line, param->fd);
 			return (check_map(param));
 		}
 		free(line);

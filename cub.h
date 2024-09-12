@@ -75,7 +75,7 @@ typedef struct s_param
 	char		*addr;
 	int			bits_per_pixel;
 	int			fd;
-	int			*format;
+	int			*format;//0:NO, 1:EA, 2:SO, 3:WE, 4:F, 5:C
 	char		**map;
 	int			map_w;
 	int			map_l;
