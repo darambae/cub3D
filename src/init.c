@@ -53,6 +53,11 @@ bool	set_screen(t_param *param)
 
 void	init_param(t_param *param)
 {
+	param->fd = 0;
+	param->format = ft_calloc(6, sizeof(int));
+	if (!param->format)
+		exit(1);
+	param->map = NULL;
 	param->map_w = 9;
 	param->map_l = 18;
 	if (!alloc_param(param) || !set_screen(param))

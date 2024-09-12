@@ -74,7 +74,9 @@ typedef struct s_param
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
-
+	int			fd;
+	int			*format;
+	char		**map;
 	int			map_w;
 	int			map_l;
 	double		fov;
