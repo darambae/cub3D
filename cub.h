@@ -75,6 +75,7 @@ typedef struct s_param
 	char		*addr;
 	int			bits_per_pixel;
 	int			fd;
+	char		*line;
 	int			*format;//0:NO, 1:EA, 2:SO, 3:WE, 4:F, 5:C
 	char		**map;
 	int			map_w;
@@ -124,6 +125,10 @@ void			get_perp_wall_dist(t_param *param);
 int				create_rgb(int r, int g, int b);
 void			my_mlxx_pixel_put(t_param *param, int x, int y, int color);
 unsigned int	get_pixel(t_param *param, int x, int y);
+
+//error management
+void			ft_error(char *str, t_param *param);
+void			clean_all(t_param *param);
 
 //bonus
 void			print_minimap(t_param *param);

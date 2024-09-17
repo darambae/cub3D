@@ -44,21 +44,7 @@ int	check_openable(char *av)
 	fd = open(av, O_RDONLY);
 	return (fd);
 }
-int	get_path(char *line, char second_letter, int i, t_param *param)
-{
-	line++;
-	if (*line == second_letter)
-		line++;
-	if (!ft_strchr(" \t\n\v\r", *line))//no space after id
-		return (-1);
-	while (ft_strchr(" \t\n\v\r", *line))//skip space
-		line++;
-	if (!*line)//no texture's path after spaces
-		return (-1);
-	param->tex[i].path = ft_strdup(line);
-	param->format[i] = 1;
-	return (0);
-}
+
 int	get_number(int *n, char *line)
 {
 	*n = 0;
@@ -78,90 +64,3 @@ int	get_number(int *n, char *line)
 			return (-1);
 	}
 }
-int	get_color(char *line, t_param *param)
-{
-	int		r;
-	int		g;
-	int		b;
-	char	id;
-
-	id = *line;
-	if ((id == "F" && param->format[4] == 0) ||
-		(id == "C" && param->format[5]== 0))
-	{
-		line++;
-		if (!ft_strchr(" \t\n\v\r", *line))//no space after id
-			return (-1);
-		while (ft_strchr(" \t\n\v\r", *line))//skip space
-			line++;
-		if (!*line)//no color after spaces
-			return (-1);
-		if (get_number(&r, line) != -1)
-		{
-			if (get_number(&g, line) != -1)
-			{
-				if (get_number(&b, line) != -1)
-				{
-					if (id == "F")
-					{
-						param->color_floor = create_rgb(r, g, b);
-						param->format[4] = 1;
-					}
-					if (id == "C")
-					{
-						param->color_ceiling = create_rgb(r, g, b);
-						param->format[5] = 1;
-					}
-					return (0);
-				}
-			}
-		}
-	}
-	return (-1);
-}
-int	keep_format(char *line, t_param *param)
-{
-	char	second_letter;
-	int		i;
-
-	second_letter = "O";
-	i = 0;
-	if (*line == "F" || *line == "C")
-		return (get_color(line, param));
-	else if (*line == "E" && param->format[1] == 0)
-	{
-		second_letter = "A";
-		i++;
-	}
-	else if (*line == "S" && param->format[2] == 0)
-		i = 2;
-	else if (*line == "W" && param->format[3] == 0)
-	{
-		second_letter = "E";
-		i = 3;
-	}
-	if (param->format[i] == 1)
-		return (-1);
-	return (get_path(line, second_letter, i, param));
-}
-
-/*check_format :
-	- check if there is a line which begin by NO/SO/WE/EA/F or C and
-	add informations found after in param
-	- swap lines with other things and spaces before the format description*/
-int	check_format(char *line, t_param *param)
-{
-	int	i;
-
-	i = 0;
-	while (ft_strchr(" \t\n\v\r", line[i]))
-		i++;
-	if (!line[i])
-		return (0);
-	if (ft_strchr("NSWEFC", line[i]))
-		return (keep_format(line, param));
-	else
-		return (1);
-}
-
-
