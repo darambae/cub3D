@@ -46,8 +46,7 @@ int	main(int ac, char **av)
 		return(ft_error("file is not openable"));
 	init_param(&param);
 	if (check_texture(param) < 0)
-		return(ft_error("miss something in texture description\n
-		The format should be NO/SO/WE/EA/C/F follow by the texture's path\\n"));
+		return(ft_error("miss something in texture description\nThe format should be NO/SO/WE/EA/C/F follow by the texture's path\\n"));
 	//check each line and send information to param
 	//check the map
 	cast_rays_and_render(&param);
