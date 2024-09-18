@@ -45,22 +45,3 @@ int	check_openable(char *av)
 	return (fd);
 }
 
-int	get_number(int *n, char *line)
-{
-	*n = 0;
-	if (ft_isdigit(*line))
-	{
-		*n = ft_atoi(line);
-		if (*n < 0 || *n > 255)
-			return (-1);
-		while (ft_isdigit(*line))
-			line++;
-		if (*line == "," && *(line + 1) == " ")
-		{
-			line = line + 2;
-			return (0);
-		}
-		else
-			return (-1);
-	}
-}

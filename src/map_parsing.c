@@ -16,100 +16,106 @@ int	clean_map(char **map)
 	map = NULL;
 	return (-1);
 }
-//check if line contains just "01NSEW \n"
-int	check_line(char *line)
+//check if line contains just "01NSEW \n and if there is only one player"
+void	check_line(char *line, t_param *param)
+{
+	int	i;
+	int	player;
+
+	i = 0;
+	player = 0;
+	while(line[i] && ft_strchr("01NSEW \n", line[i]))
+	{
+		if (ft_strchr("NSEW", line[i]))
+		{
+			if (param->pos.x == -1)
+				param->pos.x = i;
+			else
+				ft_error("just one player is accepted", param);
+		}
+		i++;
+	}
+	if (line[i])
+		ft_error("only 01NSEW are accepted as symbol for the map", param);
+	if (i > param->map_x)
+		param->map_x = i;
+	return;
+}
+/*copy temp in map and add line at the end*/
+void	copy_map(char **map, char **temp, char *line)
 {
 	int	i;
 
 	i = 0;
-	while(line[i] &&
-		(ft_strchr("01NSEW", line[i]) || ft_strchr(" \t\n\v\r", line[i])))
-		i++;
-	if (line[i])
-		return (-1);
-	return (0);
+	while (temp[i][0])
+		map[i] = temp[i++];
+	map[i++] = line;
+	map[i] = '\0';
+	if (temp)
+		free(temp);
+	temp = NULL;
 }
 
-//copy_map create a char ** to be manipulated and modified and if charac are whitespace or SNEW01
-int	copy_map(char **map, char *line, int fd)
+/*copy line in param->map until the end of file fd*/
+int	get_map(t_param *param, char *line, int fd)
 {
 	char	**temp;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	while (line)
 	{
-		if (check_line(line) == -1)
-			return (clean_map(map));
-		temp = map;
-		map = malloc((++i + 1) * sizeof(char *));
-		if (!map)
+		check_line(line, param);
+		if (param->pos.x != -1 && param->pos.y == -1)
+			param->pos.y = i;
+		temp = param->map;
+		param->map = malloc((++i + 1) * sizeof(char *));
+		if (!param->map)
 			return (clean_map(temp));
-		while (j < i - 1)
-			map[j] = temp[j++];
-		map[j++] = line;
-		map[j] = '\0';
-		if (temp)
-			free(temp);
+		copy_map(param->map, temp, line);
 		line = get_next_line(fd);
-		j = 0;
-		temp = NULL;
 	}
+	close(param->fd);
+	param->map_y = i;
 	return (0);
 }
 
-int	ft_flood_map(char **map)
+bool	closed_map(t_param *param, int x, int y)
 {
-
+	if (x == 0 || y == 0 || x == param->map_x || y == param->map_y)
+		return (false);
+	if (param->map[y][x - 1] == " " || param->map[y][x + 1] == " ")
+		return (false);
+	if (param->map[y - 1][x] == " " || param->map[y + 1][x] == " ")
+		return (false);
+	if (param->map[y - 1][x - 1] == " " || param->map[y - 1][x + 1] == " ")
+		return (false);
+	if (param->map[y + 1][x - 1] == " " || param->map[y + 1][x + 1] == " ")
+		return (false);
+	return (true);
 }
 
-int	ft_map_is_closed(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (ft_flood_map(map) > 0)
-	{
-		while (map[i])
-		{
-			while (map[i][j])
-			{
-				if (ft_strchr("SNEW0", map[i][j]))
-					return (-1);//if all is not 1, wall are not closed
-				j++;
-			}
-			j = 0;
-			i++;
-		}
-	}
-	return (-1);//flood_map detect an error (several player or wall not closed)
-}
-//check if the map have only one player and is closed
 int	check_map(t_param *param)
 {
-	char	**mini_map;
-	int		i;
+	int	x;
+	int	y;
 
-	i = 0;
-	mini_map = NULL;
-	mini_map = malloc(param->map_w * sizeof(char *));
-	if (!mini_map)
-		return (-1);
-	while (i < param->map_w)
+	x = 0;
+	y = 0;
+	if (param->pos.x == -1 || param->pos.y == -1)
+		ft_error("no player in the map \
+		(player must be symbolised by N, S, W or E)", param);
+	while (param->map[y])
 	{
-		mini_map[i] = ft_strdup(param->map[i]);
-		i++;
+		while (param->map[y][x])
+		{
+			if (ft_strchr("SNEW0", param->map[y][x])
+			&& closed_map(param, x, y) == false)
+				ft_error("map is not closed", param);
+			x++;
+		}
+		x = 0;
+		y++;
 	}
-	mini_map[i] = '\0';
-	if (ft_map_is_closed(param->map) == -1)
-		return (clean_map(param->map), clean_map(mini_map));
-	clean_map(param->map);
-	param->map = mini_map;
-	//faire un flood_fill sur la map et verif a la fin qu'il n'y a que des 1
-	//si NSW ou E, utiliser un booleen pour verifier qu'il n'y en a qu'un
-	close(param->fd);
+	return (0);
 }

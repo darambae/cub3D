@@ -112,11 +112,12 @@ int	check_texture(t_param *param)
 				i++;
 		}
 		if (map == -1 || (map == 1 &&
-			(i != 5 || copy_map(param->map, line, param->fd) == -1
+			(i != 5 || get_map(param->map, line, param->fd) == -1
 			|| check_map(param) == -1)))//wrong format, keep format return -1
 			ft_error("miss something in texture description\nThe format should be NO/SO/WE/EA/C/F follow by the texture's path\\n", param);
 		if (line)
 			free(line);//map = 0, line is empty
 		line = get_next_line(param->fd);
 	}
+	return (0);
 }

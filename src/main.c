@@ -57,8 +57,8 @@ int	main(int ac, char **av)
 		ft_error("file is not openable", param);
 	init_param(&param);
 	check_texture(param);
-	//check each line and send information to param
-	//check the map
+	if (!load_texture(param))//send error if path are not good
+		exit(1);
 	cast_rays_and_render(&param);
 	event_handler(&param);
 	mlx_loop(param->mlx);

@@ -18,10 +18,10 @@ void	init_texture(t_param *param)
 		i++;
 	}
 	//0 = north, 1 = east, 2 = south, 3 = west
-	param->tex[0].path = "./assets/spring_256.xpm";
+	/*param->tex[0].path = "./assets/spring_256.xpm";
 	param->tex[1].path = "./assets/summer_256.xpm";
 	param->tex[2].path = "./assets/autumn_256.xpm";
-	param->tex[3].path = "./assets/winter_256.xpm";
+	param->tex[3].path = "./assets/winter_256.xpm";*/
 }
 
 bool	alloc_param(t_param *param)
@@ -58,14 +58,14 @@ void	init_param(t_param *param)
 	if (!param->format)
 		exit(1);
 	param->map = NULL;
-	param->map_w = 9;
-	param->map_l = 18;
+	param->map_y = 9;
+	param->map_x = 18;
 	if (!alloc_param(param) || !set_screen(param))
 		exit(1);
 	init_texture(param);
 	//set default texture path temporarily
-	if (!load_texture(param))
-		exit(1);
+	/*if (!load_texture(param))
+		exit(1);*/
 	param->ray.draw_start = 0;
 	param->ray.draw_end = 0;
 	param->fov = 0.66;
@@ -76,8 +76,8 @@ void	init_param(t_param *param)
 	param->mini.scale = 10;
 	param->mini.color = create_rgb(250, 240, 230);
 	//parsing part
-	param->pos.x = 6;
-	param->pos.y = 5;
-	param->color_floor = create_rgb(150, 185, 81);
-	param->color_ceiling = create_rgb(161, 223, 248);
+	param->pos.x = -1;
+	param->pos.y = -1;
+	param->color_floor = 0;//create_rgb(150, 185, 81);
+	param->color_ceiling = 0;//create_rgb(161, 223, 248);
 }

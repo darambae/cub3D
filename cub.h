@@ -78,8 +78,8 @@ typedef struct s_param
 	char		*line;
 	int			*format;//0:NO, 1:EA, 2:SO, 3:WE, 4:F, 5:C
 	char		**map;
-	int			map_w;
-	int			map_l;
+	int			map_y;
+	int			map_x;
 	double		fov;
 	t_vec		pos;
 	t_vec		plane;
