@@ -45,22 +45,29 @@ int	main(int ac, char **av)
 	 - second loop: from x = 0 to x = width
 	 - third loop: while (!hit)
 	*/
+	param = NULL;
 	if (ac != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
+	param = malloc(1 * sizeof(t_param));
+	if (!param)
+	{
+		printf("Error\n");
+		return (1);
+	}
+	init_param(param);
 	if (check_extension(av[1]) < 0)
 		ft_error("filename must finish by .cub", param);
 	param->fd = check_openable(av[1]);
 	if (param->fd < 0)
 		ft_error("file is not openable", param);
-	init_param(&param);
 	check_texture(param);
 	if (!load_texture(param))//send error if path are not good
 		exit(1);
-	cast_rays_and_render(&param);
-	event_handler(&param);
+	cast_rays_and_render(param);
+	event_handler(param);
 	mlx_loop(param->mlx);
 	clean_all(param);
 	return (0);

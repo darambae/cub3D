@@ -32,7 +32,7 @@ int	check_extension(char *av)
 		return (-1);
 	av = av + len - 4;
 	cmp = ft_strncmp(av, ".cub", 4);
-	if (cmp =! 0)
+	if (cmp != 0)
 		return (-1);
 	return (0);
 }

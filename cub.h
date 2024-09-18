@@ -94,9 +94,27 @@ typedef struct s_param
 	t_mini		mini;
 }	t_param;
 
-//map parsing
+//parsing
 bool			load_texture(t_param *param);
+int				check_extension(char *av);
+int				check_openable(char *av);
 
+//texture path and color parsing
+int				get_color(char *line, t_param *param);
+int				get_path(char *line, char second_letter, int i, t_param *param);
+int				keep_format(char *line, t_param *param);
+int				check_format(char *line, t_param *param);
+int				check_texture(t_param *param);
+int				skip_space(char **line);
+int				get_number(int *n, char **line);
+
+//map parsing
+int				clean_map(char **map);
+void			check_line(char *line, t_param *param);
+void			copy_map(char **map, char **temp, char *line);
+int				get_map(t_param *param, char *line, int fd);
+bool			closed_map(t_param *param, int x, int y);
+int				check_map(t_param *param);
 
 //vector calculation
 t_vec			add_vec(t_vec a, t_vec b);

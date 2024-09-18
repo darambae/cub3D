@@ -1,29 +1,11 @@
 #include "../cub.h"
 
-//free la map
-int	clean_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		map[i] = NULL;
-		i++;
-	}
-	free(map);
-	map = NULL;
-	return (-1);
-}
 //check if line contains just "01NSEW \n and if there is only one player"
 void	check_line(char *line, t_param *param)
 {
 	int	i;
-	int	player;
 
 	i = 0;
-	player = 0;
 	while(line[i] && ft_strchr("01NSEW \n", line[i]))
 	{
 		if (ft_strchr("NSEW", line[i]))
@@ -47,8 +29,14 @@ void	copy_map(char **map, char **temp, char *line)
 	int	i;
 
 	i = 0;
-	while (temp[i][0])
-		map[i] = temp[i++];
+	if (temp)
+	{
+		while (temp[i][0])
+		{
+			map[i] = temp[i];
+			i++;
+		}
+	}
 	map[i++] = line;
 	map[i] = '\0';
 	if (temp)
@@ -84,13 +72,13 @@ bool	closed_map(t_param *param, int x, int y)
 {
 	if (x == 0 || y == 0 || x == param->map_x || y == param->map_y)
 		return (false);
-	if (param->map[y][x - 1] == " " || param->map[y][x + 1] == " ")
+	if (param->map[y][x - 1] == ' ' || param->map[y][x + 1] == ' ')
 		return (false);
-	if (param->map[y - 1][x] == " " || param->map[y + 1][x] == " ")
+	if (param->map[y - 1][x] == ' ' || param->map[y + 1][x] == ' ')
 		return (false);
-	if (param->map[y - 1][x - 1] == " " || param->map[y - 1][x + 1] == " ")
+	if (param->map[y - 1][x - 1] == ' ' || param->map[y - 1][x + 1] == ' ')
 		return (false);
-	if (param->map[y + 1][x - 1] == " " || param->map[y + 1][x + 1] == " ")
+	if (param->map[y + 1][x - 1] == ' ' || param->map[y + 1][x + 1] == ' ')
 		return (false);
 	return (true);
 }

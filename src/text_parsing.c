@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 int	get_color(char *line, t_param *param)
 {
@@ -8,15 +8,15 @@ int	get_color(char *line, t_param *param)
 	char	*id;
 
 	id = line++;
-	if (skip_space(line) == 0 && get_number(&r, line) != -1 &&
-		get_number(&g, line) != -1 && get_number(&b, line) != -1)
+	if (skip_space(&line) == 0 && get_number(&r, &line) != -1 &&
+		get_number(&g, &line) != -1 && get_number(&b, &line) != -1)
 	{
-		if (*id == "F")
+		if (*id == 'F')
 		{
 			param->color_floor = create_rgb(r, g, b);
 			param->format[4] = 1;
 		}
-		else if (*id == "C")
+		else if (*id == 'C')
 		{
 			param->color_ceiling = create_rgb(r, g, b);
 			param->format[5] = 1;
@@ -52,24 +52,24 @@ int	keep_format(char *line, t_param *param)
 	char	second_letter;
 	int		i;
 
-	second_letter = "O";
+	second_letter = 'O';
 	i = 0;
-	if ((*line == "F" && param->format[4] == 0) ||
-		(*line == "C" && param->format[5]== 0))
+	if ((*line == 'F' && param->format[4] == 0) ||
+		(*line == 'C' && param->format[5]== 0))
 		return (get_color(line, param));
-	else if (*line == "E")
+	else if (*line == 'E')
 	{
-		second_letter = "A";
+		second_letter = 'A';
 		i++;
 	}
-	else if (*line == "S")
+	else if (*line == 'S')
 		i = 2;
-	else if (*line == "W")
+	else if (*line == 'W')
 	{
-		second_letter = "E";
+		second_letter = 'E';
 		i = 3;
 	}
-	else if (*line != "N" || param->format[i] == 1)
+	else if (*line != 'N' || param->format[i] == 1)
 		return (-1);
 	return (get_path(line, second_letter, i, param));
 }
@@ -98,7 +98,6 @@ int	check_texture(t_param *param)
 	char	*line;
 	int		i;
 	int		map;
-	char	*save_line;
 
 	i = 0;
 	map = 0;
@@ -112,7 +111,7 @@ int	check_texture(t_param *param)
 				i++;
 		}
 		if (map == -1 || (map == 1 &&
-			(i != 5 || get_map(param->map, line, param->fd) == -1
+			(i != 6 || get_map(param, line, param->fd) == -1
 			|| check_map(param) == -1)))//wrong format, keep format return -1
 			ft_error("miss something in texture description\nThe format should be NO/SO/WE/EA/C/F follow by the texture's path\\n", param);
 		if (line)
