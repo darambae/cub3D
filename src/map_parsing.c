@@ -31,7 +31,7 @@ void	copy_map(char **map, char **temp, char *line)
 	i = 0;
 	if (temp)
 	{
-		while (temp[i][0])
+		while (temp[i])
 		{
 			map[i] = temp[i];
 			i++;

@@ -58,8 +58,8 @@ void	init_param(t_param *param)
 	if (!param->format)
 		exit(1);
 	param->map = NULL;
-	param->map_y = 9;
-	param->map_x = 18;
+	param->map_y = 0;
+	param->map_x = 0;
 	if (!alloc_param(param) || !set_screen(param))
 		exit(1);
 	init_texture(param);
