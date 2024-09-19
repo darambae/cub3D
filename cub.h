@@ -88,7 +88,6 @@ typedef struct s_param
 	t_texture	*tex;
 	int			size_line;
 	int			endian;
-
 	t_ray		ray;
 	t_mini		mini;
 }	t_param;

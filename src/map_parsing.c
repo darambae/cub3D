@@ -13,7 +13,7 @@ void	check_line(char *line, t_param *param)
 			if (param->pos.x == -1)
 				param->pos.x = i;
 			else
-				ft_error("just one player is accepted", param);
+				ft_error("several players in the map", param);
 		}
 		i++;
 	}

@@ -1,6 +1,6 @@
 #include "../cub.h"
 
-int world_map[9][18] = {
+/*int world_map[9][18] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -10,15 +10,71 @@ int world_map[9][18] = {
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-};
+};*/
+
+void	clean_tex(t_texture *tex, t_param *param)
+{
+	int	i;
+
+	i = 0;
+	while (tex[i].path && i < 4)
+	{
+		free(tex[i].path);
+		tex[i].path = NULL;
+		mlx_destroy_image(param->mlx, tex[i].img);
+		free(tex[i].addr);
+		i++;
+	}
+	free(tex);
+	tex = NULL;
+}
+void	clean_mlx(t_param *param)
+{
+	if (param->mlx)
+	{
+		if (param->window)
+		{
+			mlx_destroy_window(param->mlx, param->window);
+			param->window = NULL;
+		}
+		if (param->img)
+		{
+			mlx_destroy_image(param->mlx, param->img);
+			param->img = NULL;
+		}
+		if (param->addr)
+		{
+			free(param->addr);
+			param->addr = NULL;
+		}
+	}
+	mlx_destroy_display(param->mlx);
+	param->mlx = NULL;
+}
 
 void	clean_all(t_param *param)
 {
-	close(param->fd);
+	if (param)
+	{
+		if (param->mlx)
+			clean_mlx(param);
+		if (param->format)
+		{
+			free(param->format);
+			param->format = NULL;
+		}
+		if (param->map)
+			clean_map(param->map);
+		if (param->tex)
+			clean_tex(param->tex, param);
+	}
+	free(param);
+	param = NULL;
 }
 
 void	ft_error(char *str, t_param *param)
 {
+	close(param->fd);
 	clean_all(param);
 	printf("ERROR: %s\n", str);
 	exit (1);
@@ -61,14 +117,13 @@ int	main(int ac, char **av)
 	if (param->fd < 0)
 		ft_error("file is not openable", param);
 	check_texture(param);
-	/*
+	if (!param->map)
+		ft_error("no map in the file.cub", param);
 	if (!load_texture(param))//send error if path are not good
 		exit(1);
 	cast_rays_and_render(param);
 	event_handler(param);
 	mlx_loop(param->mlx);
-	clean_all(param);
-	return (0);*/
 	while (param->map[y])
 	{
 		while (param->map[y][x])
@@ -79,6 +134,7 @@ int	main(int ac, char **av)
 		x = 0;
 		y++;
 	}
+	close(param->fd);
 	clean_all(param);
 	return (0);
 }

@@ -73,7 +73,7 @@ void	dda(t_param *param)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (world_map[(int)ray->map.x][(int)ray->map.y] > 0)
+		if (param->map[(int)ray->map.x][(int)ray->map.y] > 0)
 			hit = 1;
 	}
 }

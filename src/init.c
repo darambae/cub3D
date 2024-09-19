@@ -28,10 +28,7 @@ bool	alloc_param(t_param *param)
 {
 	param->tex = (t_texture *)malloc(sizeof(t_texture) * 4);
 	if (param->tex == NULL)
-	{
-		printf("Error\n");
 		return (false);
-	}
 	return (true);
 }
 
@@ -44,24 +41,23 @@ bool	set_screen(t_param *param)
 		&param->size_line, &param->endian);
 	if (param->mlx == NULL || param->window == NULL || param->img == NULL \
 		|| param->addr == NULL)
-	{
-		printf("Error\n");
 		return (false);
-	}
 	return (true);
 }
 
 void	init_param(t_param *param)
 {
 	param->fd = 0;
-	param->format = ft_calloc(6, sizeof(int));
-	if (!param->format)
-		exit(1);
 	param->map = NULL;
 	param->map_y = 0;
 	param->map_x = 0;
-	if (!alloc_param(param) || !set_screen(param))
+	param->format = ft_calloc(6, sizeof(int));
+	if (!param->format || !alloc_param(param) || !set_screen(param))
+	{
+		printf("memorie allocation failed");
+		clean_all(param);
 		exit(1);
+	}
 	init_texture(param);
 	//set default texture path temporarily
 	/*if (!load_texture(param))
