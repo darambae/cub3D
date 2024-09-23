@@ -45,34 +45,26 @@ int	clean_map(char **map)
 	return (-1);
 }
 
-/*char 	**invert_map(t_param *param)
+void	set_direction(t_param *param, char c)
 {
-	char	**invert_map;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 0;
-	invert_map = malloc(param->map_x * sizeof(char*));
-	if (!invert_map)
-		ft_error("memorie allocation failed", param);
-	while (j < param->map_x)
-	{
-		invert_map[j] = malloc(param->map_y * sizeof(char));
-			if (!invert_map[j])
-				ft_error("memorie allocation failed", param);
-		j++;
+	if (c == 'N')
+	{	
+		param->dir.x = 0;
+		param->dir.y = 1;
 	}
-	j = 0;
-	while (param->map[i])
+	else if (c == 'S')
 	{
-		while (param->map[i][j])
-		{
-			invert_map[j][i] = param->map[i][j];
-			j++;
-		}
-		j = 0;
-		i++;
+		param->dir.x = 0;
+		param->dir.y = -1;
 	}
-	return (invert_map);
-}*/
+	else if (c == 'E')
+	{
+		param->dir.x = 1;
+		param->dir.y = 0;
+	}
+	else
+	{
+		param->dir.x = -1;
+		param->dir.y = 0;
+	}
+}

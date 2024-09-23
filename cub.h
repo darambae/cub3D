@@ -109,6 +109,7 @@ void			copy_map(char **map, char **temp, char *line);
 int				get_map(t_param *param, char *line, int fd);
 bool			closed_map(t_param *param, int x, int y);
 int				check_map(t_param *param);
+void			 set_direction(t_param *param, char c);
 
 //vector calculation
 t_vec			add_vec(t_vec a, t_vec b);

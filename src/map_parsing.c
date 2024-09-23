@@ -14,7 +14,11 @@ void	check_line(char *line, t_param *param)
 		if (ft_strchr("NSEW", line[i]))
 		{
 			if (param->pos.y == -1)
+			{
 				param->pos.y = i;
+				set_direction(param, line[i]);
+				line[i] = '0';
+			}
 			else
 				ft_error("several players in the map", param);
 		}
