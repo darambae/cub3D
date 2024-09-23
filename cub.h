@@ -74,9 +74,11 @@ typedef struct s_param
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
-
-	int			map_w;
-	int			map_l;
+	int			fd;
+	int			*format;//0:NO, 1:EA, 2:SO, 3:WE, 4:F, 5:C
+	char		**map;
+	int			map_y;
+	int			map_x;
 	double		fov;
 	t_vec		pos;
 	t_vec		plane;
@@ -86,14 +88,31 @@ typedef struct s_param
 	t_texture	*tex;
 	int			size_line;
 	int			endian;
-
 	t_ray		ray;
 	t_mini		mini;
 }	t_param;
 
-//map parsing
+//parsing
 bool			load_texture(t_param *param);
+int				check_extension(char *av);
+int				check_openable(char *av);
 
+//texture path and color parsing
+int				get_color(char *line, t_param *param);
+int				get_path(char *line, char second_letter, int i, t_param *param);
+int				keep_format(char *line, t_param *param);
+int				check_format(char *line, t_param *param);
+int				check_texture(t_param *param);
+int				skip_space(char **line);
+int				get_number(int *n, char **line);
+
+//map parsing
+int				clean_map(char **map);
+void			check_line(char *line, t_param *param);
+void			copy_map(char **map, char **temp, char *line);
+int				get_map(t_param *param, char *line, int fd);
+bool			closed_map(t_param *param, int x, int y);
+int				check_map(t_param *param);
 
 //vector calculation
 t_vec			add_vec(t_vec a, t_vec b);
@@ -122,6 +141,10 @@ void			get_perp_wall_dist(t_param *param);
 int				create_rgb(int r, int g, int b);
 void			my_mlxx_pixel_put(t_param *param, int x, int y, int color);
 unsigned int	get_pixel(t_param *param, int x, int y);
+
+//error management
+void			ft_error(char *str, t_param *param);
+void			clean_all(t_param *param);
 
 //bonus
 void			print_minimap(t_param *param);

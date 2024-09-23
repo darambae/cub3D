@@ -21,3 +21,27 @@ bool	load_texture(t_param *param)
 	}
 	return (true);
 }
+
+int	check_extension(char *av)
+{
+	int	len;
+	int	cmp;
+
+	len = ft_strlen(av);
+	if (len < 4)
+		return (-1);
+	av = av + len - 4;
+	cmp = ft_strncmp(av, ".cub", 4);
+	if (cmp != 0)
+		return (-1);
+	return (0);
+}
+
+int	check_openable(char *av)
+{
+	int	fd;
+
+	fd = open(av, O_RDONLY);
+	return (fd);
+}
+
