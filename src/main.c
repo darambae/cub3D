@@ -111,9 +111,9 @@ int	main(int ac, char **av)
 		printf("Error\n");
 		return (1);
 	}
-	init_param(param);
 	if (check_extension(av[1]) < 0)
 		ft_error("filename must finish by .cub", param);
+	init_param(param);
 	param->fd = check_openable(av[1]);
 	if (param->fd < 0)
 		ft_error("file is not openable", param);
