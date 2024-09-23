@@ -6,7 +6,7 @@ void	check_line(char *line, t_param *param)
 	int	i;
 
 	i = 0;
-	while(line[i] && ft_strchr("01NSEW \n", line[i]))
+	while (line[i] && ft_strchr("01NSEW \n", line[i]))
 	{
 		if (ft_strchr("NSEW", line[i]))
 		{
@@ -21,8 +21,9 @@ void	check_line(char *line, t_param *param)
 		ft_error("only 01NSEW are accepted as symbol for the map", param);
 	if (i > param->map_x)
 		param->map_x = i;
-	return;
+	return ;
 }
+
 /*copy temp in map and add line at the end*/
 void	copy_map(char **map, char **temp, char *line)
 {

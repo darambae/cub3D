@@ -8,8 +8,8 @@ int	get_color(char *line, t_param *param)
 	char	*id;
 
 	id = line++;
-	if (skip_space(&line) == 0 && get_number(&r, &line) != -1 &&
-		get_number(&g, &line) != -1 && get_number(&b, &line) != -1)
+	if (skip_space(&line) == 0 && get_number(&r, &line) != -1 \
+		&& get_number(&g, &line) != -1 && get_number(&b, &line) != -1)
 	{
 		if (*id == 'F')
 		{
@@ -106,12 +106,12 @@ int	check_texture(t_param *param)
 	i = 0;
 	map = 0;
 	line = get_next_line(param->fd);
-	while(line)
+	while (line)
 	{
 		map = check_format(line, param);
-		if (map == 1)//line not begin by NSWEFC
+		if (map == 1) //line not begin by NSWEFC
 		{
-			while(i < 6 && param->format[i] == 1)//check if all texture are filled
+			while (i < 6 && param->format[i] == 1) //check if all texture are filled
 				i++;
 		}
 		if (map == -1 || (map == 1 &&

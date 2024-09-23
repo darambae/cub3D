@@ -28,6 +28,7 @@ void	clean_tex(t_texture *tex, t_param *param)
 	free(tex);
 	tex = NULL;
 }
+
 void	clean_mlx(t_param *param)
 {
 	if (param->mlx)
