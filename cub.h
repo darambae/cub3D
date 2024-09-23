@@ -26,8 +26,6 @@
 # define LOOK_LEFT	65361
 # define LOOK_RIGHT	65363
 
-extern int	world_map[9][18];
-
 typedef struct s_vec
 {
 	double	x;
@@ -93,9 +91,7 @@ typedef struct s_param
 }	t_param;
 
 //parsing
-bool			load_texture(t_param *param);
-int				check_extension(char *av);
-int				check_openable(char *av);
+void			parse_map_file(t_param *param, char **av);
 
 //texture path and color parsing
 int				get_color(char *line, t_param *param);
@@ -143,6 +139,8 @@ void			my_mlxx_pixel_put(t_param *param, int x, int y, int color);
 //error management
 void			ft_error(char *str, t_param *param);
 void			clean_all(t_param *param);
+void			clean_mlx(t_param *param);
+void			clean_tex(t_texture *tex, t_param *param);
 
 //bonus
 void			print_minimap(t_param *param);
