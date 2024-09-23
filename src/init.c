@@ -57,7 +57,7 @@ void	init_param(t_param *param)
 	param->ray.draw_start = 0;
 	param->ray.draw_end = 0;
 	param->fov = 0.66;
-	param->dir.x = 1;
+	param->dir.x = 0;
 	param->dir.y = 0;
 	param->plane.x = 0;
 	param->plane.y = param->fov;

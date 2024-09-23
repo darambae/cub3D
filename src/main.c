@@ -16,9 +16,7 @@
 int	main(int ac, char **av)
 {
 	t_param	*param;
-	// int y = 0;
-	// int x = 0;
-	
+
 	param = NULL;
 	param = malloc(1 * sizeof(t_param));
 	if (ac != 2 || !param)
@@ -31,16 +29,6 @@ int	main(int ac, char **av)
 	cast_rays_and_render(param);
 	event_handler(param);
 	mlx_loop(param->mlx);
-	// while (param->map[y])
-	// {
-	// 	while (param->map[y][x])
-	// 	{
-	// 		write(1, &param->map[y][x], 1);
-	// 		x++;
-	// 	}
-	// 	x = 0;
-	// 	y++;
-	// }
 	close(param->fd);
 	clean_all(param);
 	return (0);
