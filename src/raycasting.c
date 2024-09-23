@@ -9,6 +9,8 @@ double	calcul_wall_dist_hei(t_param *param)
 	r = &param->ray;
 	get_perp_wall_dist(param);
 	line_height = (int)(SCREEN_H / r->perp_wall_dist);
+	// if (line_height > SCREEN_H)
+	// 	line_height = SCREEN_H;
 	r->draw_start = -line_height / 2 + SCREEN_H / 2;
 	if (r->draw_start < 0)
 		r->draw_start = 0;

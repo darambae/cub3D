@@ -14,6 +14,8 @@ int	get_text_pix(t_ray r, int y, t_texture t, double wall_x)
 	step = 1.0 * t.h / (r.draw_end - r.draw_start);
 	tex_pos = (y - r.draw_start) * step;
 	tex_y = (int)(tex_pos) % t.h;
+	if (tex_y < 0)
+		tex_y += t.h;
 	color = *(unsigned int *)(t.addr + (tex_y * t.w + tex_x) * \
 		(t.bits_per_pixel / 8));
 	return (color);
