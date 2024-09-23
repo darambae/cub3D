@@ -75,7 +75,7 @@ void	dda(t_param *param)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (param->map[(int)ray->map.x][(int)ray->map.y] > 0)
+		if (param->map[(int)ray->map.y][(int)ray->map.x] > 0)
 			hit = 1;
 	}
 }
@@ -116,6 +116,6 @@ void	cast_rays_and_render(t_param *param)
 		verline(param, cur, get_wall_dir(param), calcul_wall_dist_hei(param));
 		cur++;
 	}
-	print_minimap(param);
+	//print_minimap(param);
 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
 }

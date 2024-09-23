@@ -12,3 +12,11 @@ void	my_mlxx_pixel_put(t_param *param, int x, int y, int color)
 	dst = param->addr + (y * SCREEN_W + x) * (param->bits_per_pixel / 8);
 	*(unsigned int *)dst = color;
 }
+
+void	ft_error(char *str, t_param *param)
+{
+	close(param->fd);
+	clean_all(param);
+	printf("ERROR: %s\n", str);
+	exit (1);
+}
