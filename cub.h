@@ -103,8 +103,8 @@ int				get_path(char *line, char second_letter, int i, t_param *param);
 int				keep_format(char *line, t_param *param);
 int				check_format(char *line, t_param *param);
 int				check_texture(t_param *param);
-int				skip_space(char **line);
-int				get_number(int *n, char **line);
+int				skip_space(char *line, int *i);
+int				get_number(int *n, char *line, int *i);
 
 //map parsing
 int				clean_map(char **map);
