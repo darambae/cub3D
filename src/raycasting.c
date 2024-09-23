@@ -116,6 +116,6 @@ void	cast_rays_and_render(t_param *param)
 		verline(param, cur, get_wall_dir(param), calcul_wall_dist_hei(param));
 		cur++;
 	}
-	print_minimap(param);
+	//print_minimap(param);
 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
 }

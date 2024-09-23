@@ -1,5 +1,7 @@
 #include "../cub.h"
 
+
+
 bool	load_texture(t_param *param)
 {
 	int		i;
@@ -45,3 +47,16 @@ int	check_openable(char *av)
 	return (fd);
 }
 
+void	parse_map_file(t_param *param, char **av)
+{
+	if (check_extension(av[1]) < 0)
+		ft_error("filename must finish by .cub", param);
+	param->fd = check_openable(av[1]);
+	if (param->fd < 0)
+		ft_error("file is not openable", param);
+	check_texture(param);
+	if (!param->map)
+		ft_error("no map in the file.cub", param);
+	if (!load_texture(param))//send error if path are not good
+		exit(1);
+}

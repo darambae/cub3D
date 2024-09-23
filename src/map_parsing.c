@@ -6,12 +6,19 @@ void	check_line(char *line, t_param *param)
 	int	i;
 
 	i = 0;
+	skip_space(line, &i);
+	if (!line[i])
+		ft_error("there is an empty line in the map descrition", param);
 	while (line[i] && ft_strchr("01NSEW \n", line[i]))
 	{
 		if (ft_strchr("NSEW", line[i]))
 		{
-			if (param->pos.x == -1)
-				param->pos.x = i;
+			if (param->pos.y == -1)
+			{
+				param->pos.y = i;
+				set_direction(param, line[i]);
+				line[i] = '0';
+			}
 			else
 				ft_error("several players in the map", param);
 		}
@@ -19,8 +26,8 @@ void	check_line(char *line, t_param *param)
 	}
 	if (line[i])
 		ft_error("only 01NSEW are accepted as symbol for the map", param);
-	if (i > param->map_x)
-		param->map_x = i;
+	if (i > param->map_y)
+		param->map_y = i;
 	return ;
 }
 
@@ -55,8 +62,8 @@ int	get_map(t_param *param, char *line, int fd)
 	while (line)
 	{
 		check_line(line, param);
-		if (param->pos.x != -1 && param->pos.y == -1)
-			param->pos.y = i;
+		if (param->pos.y != -1 && param->pos.x == -1)
+			param->pos.x = i;
 		temp = param->map;
 		param->map = malloc((++i + 1) * sizeof(char *));
 		if (!param->map)
@@ -65,13 +72,13 @@ int	get_map(t_param *param, char *line, int fd)
 		line = get_next_line(fd);
 	}
 	close(param->fd);
-	param->map_y = i;
+	param->map_x = i;
 	return (0);
 }
 
 bool	closed_map(t_param *param, int x, int y)
 {
-	if (x == 0 || y == 0 || x == param->map_x || y == param->map_y)
+	if (x == 0 || y == 0 || x == param->map_y || y == param->map_x)
 		return (false);
 	if (param->map[y][x - 1] == ' ' || param->map[y][x + 1] == ' ')
 		return (false);

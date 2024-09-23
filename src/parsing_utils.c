@@ -1,28 +1,28 @@
 #include "../cub.h"
 
-int	skip_space(char **line)
+int	skip_space(char *line, int *i)
 {
-	if (!ft_strchr(" \t\n\v\r", **line))//no space after id
+	if (!ft_strchr(" \t\n\v\r", line[*i]))//no space after id
 		return (-1);
-	while (ft_strchr(" \t\n\v\r", **line))//skip space
-		(*line)++;
-	if (!*line)//no color after spaces
+	while (ft_strchr(" \t\n\v\r", line[*i]))//skip space
+		(*i)++;
+	if (!line[*i])//no color after spaces
 		return (-1);
 	return (0);
 }
 
-int	get_number(int *n, char **line)
+int	get_number(int *n, char *line, int *i)
 {
 	*n = 0;
-	if (**line == ',')
-			(*line)++;
-	if (ft_isdigit(**line))
+	if (line[*i] == ',')
+			(*i)++;
+	if (ft_isdigit(line[*i]))
 	{
-		*n = ft_atoi(*line);
+		*n = ft_atoi(line + *i);
 		if (*n < 0 || *n > 255)
 			return (-1);
-		while (ft_isdigit(**line))
-			(*line)++;
+		while (ft_isdigit(line[*i]))
+			(*i)++;
 		return (0);
 	}
 	return (-1);
@@ -43,4 +43,28 @@ int	clean_map(char **map)
 	free(map);
 	map = NULL;
 	return (-1);
+}
+
+void	set_direction(t_param *param, char c)
+{
+	if (c == 'N')
+	{	
+		param->dir.x = 0;
+		param->dir.y = 1;
+	}
+	else if (c == 'S')
+	{
+		param->dir.x = 0;
+		param->dir.y = -1;
+	}
+	else if (c == 'E')
+	{
+		param->dir.x = 1;
+		param->dir.y = 0;
+	}
+	else
+	{
+		param->dir.x = -1;
+		param->dir.y = 0;
+	}
 }

@@ -5,26 +5,24 @@ int	get_color(char *line, t_param *param)
 	int		r;
 	int		g;
 	int		b;
-	char	*id;
+	int		i;
 
-	id = line++;
-	if (skip_space(&line) == 0 && get_number(&r, &line) != -1 \
-		&& get_number(&g, &line) != -1 && get_number(&b, &line) != -1)
+	i = 1;
+	if (skip_space(line, &i) == 0 && get_number(&r, line, &i) != -1 \
+		&& get_number(&g, line, &i) != -1 && get_number(&b, line, &i) != -1)
 	{
-		if (*id == 'F')
+		if (line[0] == 'F')
 		{
 			param->color_floor = create_rgb(r, g, b);
 			param->format[4] = 1;
 		}
-		else if (*id == 'C')
+		else if (line[0] == 'C')
 		{
 			param->color_ceiling = create_rgb(r, g, b);
 			param->format[5] = 1;
 		}
-		line = id;//put the line at the beginning to be well freed
 		return (0);
 	}
-	line = id;
 	return (-1);
 }
 
