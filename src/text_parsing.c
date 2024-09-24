@@ -34,11 +34,11 @@ int	get_path(char *line, char second_letter, int i, t_param *param)
 	j = 1;
 	if (line[j] == second_letter)
 		j++;
-	if (!ft_strchr(" \t\n\v\r", line[j]))//no space after id
+	if (!ft_strchr(" \t\n\v\r", line[j]))
 		return (-1);
-	while (ft_strchr(" \t\n\v\r", line[j]))//skip space
+	while (ft_strchr(" \t\n\v\r", line[j]))
 		j++;
-	if (!line[j])//no texture's path after spaces
+	if (!line[j])
 		return (-1);
 	param->tex[i].path = ft_strdup(line + j);
 	j = 0;
