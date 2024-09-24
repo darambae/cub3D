@@ -115,6 +115,7 @@ void			 set_direction(t_param *param, char c);
 t_vec			add_vec(t_vec a, t_vec b);
 t_vec			sub_vec(t_vec a, t_vec b);
 t_vec			scale_vec(t_vec a, double n);
+t_vec			divide_vec(t_vec a, double n);
 
 // initializing parameters by reading .cub file
 void			init_param(t_param *param);

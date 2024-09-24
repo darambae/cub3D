@@ -6,7 +6,7 @@ void	get_perp_wall_dist(t_param *param)
 	t_ray	*r;
 
 	r = &param->ray;
-	min_dist = 0.5;
+	min_dist = 0.1;
 	if (r->side == 0)
 		r->perp_wall_dist = (r->map.x - param->pos.x + \
 			(1 - r->step.x) / 2) / r->dir.x;

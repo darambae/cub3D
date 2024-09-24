@@ -43,7 +43,7 @@ int	get_path(char *line, char second_letter, int i, t_param *param)
 	param->tex[i].path = ft_strdup(line + j);
 	j = 0;
 	while (!ft_strchr(" \t\n\v\r", param->tex[i].path[j]))
-		j++;//to remove \n and other spaces
+		j++;
 	param->tex[i].path[j] = '\0';
 	param->format[i] = 1;
 	return (0);
@@ -107,17 +107,17 @@ int	check_texture(t_param *param)
 	while (line)
 	{
 		map = check_format(line, param);
-		if (map == 1) //line not begin by NSWEFC
+		if (map == 1)
 		{
-			while (i < 6 && param->format[i] == 1) //check if all texture are filled
+			while (i < 6 && param->format[i] == 1)
 				i++;
 		}
 		if (map == -1 || (map == 1 &&
 			(i != 6 || get_map(param, line, param->fd) == -1
-			|| check_map(param) == -1)))//wrong format, keep format return -1
+			|| check_map(param) == -1)))
 			ft_error("miss something in texture description\nThe format should be NO/SO/WE/EA/C/F follow by the texture's path\\n", param);
 		if (line && map != 1)
-			free(line);//map = 0, line is empty
+			free(line);
 		line = get_next_line(param->fd);
 	}
 	return (0);

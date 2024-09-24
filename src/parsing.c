@@ -1,7 +1,5 @@
 #include "../cub.h"
 
-
-
 bool	load_texture(t_param *param)
 {
 	int		i;
@@ -57,6 +55,6 @@ void	parse_map_file(t_param *param, char **av)
 	check_texture(param);
 	if (!param->map)
 		ft_error("no map in the file.cub", param);
-	if (!load_texture(param))//send error if path are not good
+	if (!load_texture(param))
 		exit(1);
 }

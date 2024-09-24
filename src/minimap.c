@@ -59,8 +59,8 @@ void	print_ray_on_minimap(t_param *p)
 			ray.map = add_vec(p->pos, scale_vec(ray.dir, ray_length));
 			ray.map = scale_vec(ray.map, p->mini.scale);
 			if (ray.map.x < 0 || ray.map.y < 0 ||
-				ray.map.x >= p->map_x || ray.map.y >= p->map_y ||
-				p->map[(int)ray.map.x][(int)ray.map.y] == '1')
+				ray.map.x >= p->map_x * p->mini.scale || ray.map.y >= p->map_y * p->mini.scale ||
+				p->map[(int)(ray.map.x / p->mini.scale)][(int)(ray.map.y / p->mini.scale)] == '1')
 				return ;
 			my_mlxx_pixel_put(p, ray.map.x, ray.map.y,
 				create_rgb(255, 255, 0));
