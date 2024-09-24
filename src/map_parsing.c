@@ -31,7 +31,7 @@ void	check_line(char *line, t_param *param)
 	return ;
 }
 
-/*copy temp in map and add line at the end*/
+// /*copy temp in map and add line at the end*/
 void	copy_map(char **map, char **temp, char *line)
 {
 	int	i;
@@ -52,7 +52,7 @@ void	copy_map(char **map, char **temp, char *line)
 	temp = NULL;
 }
 
-/*copy line in param->map until the end of file fd*/
+// /*copy line in param->map until the end of file fd*/
 int	get_map(t_param *param, char *line, int fd)
 {
 	char	**temp;
@@ -90,6 +90,7 @@ bool	closed_map(t_param *param, int x, int y)
 		return (false);
 	return (true);
 }
+
 
 int	check_map(t_param *param)
 {

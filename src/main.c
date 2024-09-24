@@ -26,6 +26,20 @@ int	main(int ac, char **av)
 	}
 	init_param(param);
 	parse_map_file(param, av);
+	int i = 0;
+	int j = 0;
+	while (param->map[i])
+	{
+		j = 0;
+		while (param->map[i][j])
+		{
+			printf("%c", param->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("map_x: %d, map_y: %d\n", param->map_x, param->map_y);
 	cast_rays_and_render(param);
 	event_handler(param);
 	mlx_loop(param->mlx);
