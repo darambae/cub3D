@@ -103,7 +103,7 @@ int				skip_space(char *line, int *i);
 int				get_number(int *n, char *line, int *i);
 
 //map parsing
-int				clean_map(char **map);
+int				clean_map(char **map, t_param *param);
 void			check_line(char *line, t_param *param);
 void			copy_map(char **map, char **temp, char *line);
 int				get_map(t_param *param, char *line, int fd);
@@ -142,7 +142,7 @@ void			my_mlxx_pixel_put(t_param *param, int x, int y, int color);
 void			ft_error(char *str, t_param *param);
 void			clean_all(t_param *param);
 void			clean_mlx(t_param *param);
-void			clean_tex(t_texture *tex, t_param *param);
+void			clean_tex(t_param *param);
 
 //bonus
 void			print_minimap(t_param *param);

@@ -1,5 +1,25 @@
 #include "../cub.h"
 
+void	check_char(char *line, int *i, t_param *param)
+{
+	while (line[*i] && ft_strchr("01NSEW ", line[*i]))
+	{
+		if (ft_strchr("NSEW", line[*i]))
+		{
+			if (param->pos.y == -1)
+			{
+				param->pos.y = *i;
+				set_direction(param, line[*i]);
+				line[*i] = '0';
+			}
+			else
+				ft_error("several players in the map", param);
+		}
+		(*i)++;
+	}
+	return;
+}
+
 //check if line contains just "01NSEW \n and if there is only one player"
 void	check_line(char *line, t_param *param)
 {
@@ -9,22 +29,10 @@ void	check_line(char *line, t_param *param)
 	skip_space(line, &i);
 	if (!line[i])
 		ft_error("there is an empty line in the map descrition", param);
-	while (line[i] && ft_strchr("01NSEW \n", line[i]))
-	{
-		if (ft_strchr("NSEW", line[i]))
-		{
-			if (param->pos.y == -1)
-			{
-				param->pos.y = i;
-				set_direction(param, line[i]);
-				line[i] = '0';
-			}
-			else
-				ft_error("several players in the map", param);
-		}
-		i++;
-	}
-	if (line[i])
+	check_char(line, &i, param);
+	if (line[i] == '\n')
+		line[i] = '\0';
+	if (line[i] != '\0')
 		ft_error("only 01NSEW are accepted as symbol for the map", param);
 	if (i > param->map_y)
 		param->map_y = i;
@@ -71,7 +79,6 @@ int	get_map(t_param *param, char *line, int fd)
 		copy_map(param->map, temp, line);
 		line = get_next_line(fd);
 	}
-	close(param->fd);
 	param->map_x = i;
 	return (0);
 }
