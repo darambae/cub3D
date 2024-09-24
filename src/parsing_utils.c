@@ -82,5 +82,5 @@ void	set_direction(t_param *param, char c)
 	else if (param->dir.x > 0)
 		param->plane.y = param->fov;
 	else if (param->dir.x < 0)
-		param->plane.y = -param->fov * -1;
+		param->plane.y = param->fov * -1;
 }

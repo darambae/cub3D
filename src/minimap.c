@@ -58,7 +58,6 @@ void	print_ray_on_minimap(t_param *p)
 		{
 			ray.map = add_vec(p->pos, scale_vec(ray.dir, ray_length));
 			ray.map = scale_vec(ray.map, p->mini.scale);
-			printf("ray.map.x: %f, ray.map.y: %f\n", ray.map.x, ray.map.y);
 			if (ray.map.x < 0 || ray.map.y < 0 ||
 				ray.map.x >= p->map_x || ray.map.y >= p->map_y ||
 				p->map[(int)ray.map.x][(int)ray.map.y] == '1')
