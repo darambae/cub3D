@@ -60,7 +60,7 @@ void	init_param(t_param *param)
 	param->dir.x = 0;
 	param->dir.y = 0;
 	param->plane.x = 0;
-	param->plane.y = param->fov;
+	param->plane.y = 0;
 	param->mini.scale = 10;
 	param->mini.color = create_rgb(250, 240, 230);
 	param->pos.x = -1;
