@@ -88,8 +88,6 @@ void	setup_ray(t_param *param, int cur)
 	ray->camera_x = 2 * cur / (double)SCREEN_W - 1;
 	ray->map = (t_vec){(int)param->pos.x, (int)param->pos.y};
 	ray->dir = add_vec(param->dir, scale_vec(param->plane, ray->camera_x));
-		printf("ray->camera_x: %f\n", ray->camera_x);
-
 	if (ray->dir.y == 0)
 	{
 		ray->delta_dist.x = 1;
@@ -112,13 +110,11 @@ void	cast_rays_and_render(t_param *param)
 	cur = 0;
 	while (cur < SCREEN_W)
 	{
-		printf("cur: %d\n", cur);
-		printf("param->ray.dir.x: %f , param->ray.dir.y: %f\n", param->ray.dir.x, param->ray.dir.y);
 		setup_ray(param, cur);
 		dda(param);
 		verline(param, cur, get_wall_dir(param), calcul_wall_dist_hei(param));
 		cur++;
 	}
-	//print_minimap(param);
+	print_minimap(param);
 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
 }

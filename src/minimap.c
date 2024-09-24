@@ -33,7 +33,7 @@ void	print_wall(t_param *param)
 		j = 0;
 		while (j < param->map_y)
 		{
-			if (param->map[i][j] == 1)
+			if (param->map[i][j] == '1')
 				print_square(param, i, j);
 			j++;
 		}
@@ -58,10 +58,10 @@ void	print_ray_on_minimap(t_param *p)
 		{
 			ray.map = add_vec(p->pos, scale_vec(ray.dir, ray_length));
 			ray.map = scale_vec(ray.map, p->mini.scale);
-			if (p->map[(int)ray.map.x][(int)ray.map.y] == 1 \
-				|| ray.map.x < 0 || ray.map.y < 0 ||
-				ray.map.x >= p->map_x * p->mini.scale ||
-				ray.map.y >= p->map_y * p->mini.scale)
+			printf("ray.map.x: %f, ray.map.y: %f\n", ray.map.x, ray.map.y);
+			if (ray.map.x < 0 || ray.map.y < 0 ||
+				ray.map.x >= p->map_x || ray.map.y >= p->map_y ||
+				p->map[(int)ray.map.x][(int)ray.map.y] == '1')
 				return ;
 			my_mlxx_pixel_put(p, ray.map.x, ray.map.y,
 				create_rgb(255, 255, 0));
