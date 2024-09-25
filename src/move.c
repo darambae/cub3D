@@ -19,8 +19,6 @@ void	move_back_forward(t_param *p, bool forward)
 		new_pos = sub_vec(p->pos, scale_vec(p->dir, sp));
 	else
 		return ;
-	if (new_pos.x < 0 || new_pos.y < 0 || new_pos.x > p->map_x || new_pos.y > p->map_y)
-		return ;
 	if (is_valid_position(new_pos.x, p->pos.y, p) && 
 		is_valid_position(p->pos.x, new_pos.y, p))
 		p->pos = new_pos;
@@ -38,8 +36,6 @@ void	move_left_right(t_param *p, bool right)
 	else if (!right)
 		new_pos = sub_vec(p->pos, scale_vec(p->plane, sp));
 	else
-		return ;
-	if (new_pos.x < 0 || new_pos.y < 0 || new_pos.x > p->map_x || new_pos.y > p->map_y)
 		return ;
 	if (is_valid_position(new_pos.x, p->pos.y, p) && 
 		is_valid_position(p->pos.x, new_pos.y, p))

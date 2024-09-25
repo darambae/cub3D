@@ -25,6 +25,7 @@
 # define ESC 65307
 # define LOOK_LEFT	65361
 # define LOOK_RIGHT	65363
+# define PI 3.14159
 
 typedef struct s_vec
 {
@@ -48,6 +49,7 @@ typedef struct s_ray
 	t_vec	map;
 	double	camera_x;
 	double	perp_wall_dist;
+	int		line_height;
 	int		side;
 	int		draw_start;
 	int		draw_end;
@@ -63,6 +65,9 @@ typedef struct s_texture
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
+	int		line_height;
+	// double	tex_pos;
+	// double	step;
 }	t_texture;
 
 typedef struct s_param
@@ -133,6 +138,7 @@ void			setup_ray(t_param *param, int cur);
 
 //calculation
 void			get_perp_wall_dist(t_param *param);
+double			normalize_angle(double angle);
 
 //utils
 int				create_rgb(int r, int g, int b);
