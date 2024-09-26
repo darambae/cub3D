@@ -12,7 +12,7 @@ void	move_back_forward(t_param *p, bool forward)
 	double	sp;
 	t_vec	new_pos;
 
-	sp = 0.1;
+	sp = 0.05;
 	if (forward)
 		new_pos = add_vec(p->pos, scale_vec(p->dir, sp));
 	else if (!forward)
@@ -30,7 +30,7 @@ void	move_left_right(t_param *p, bool right)
 	double	sp;
 	t_vec	new_pos;
 
-	sp = 0.1;
+	sp = 0.05;
 	if (right)
 		new_pos = add_vec(p->pos, scale_vec(p->plane, sp));
 	else if (!right)
