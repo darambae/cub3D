@@ -114,7 +114,7 @@ int				clean_map(char **map, int max);
 void			check_line(char *line, t_param *param);
 void			copy_map(char **map, char **temp, char *line);
 int				get_map(t_param *param, char *line, int fd);
-bool			closed_map(t_param *param, int x, int y);
+bool			closed_map(t_param *param, int max_x, int x, int y);
 int				check_map(t_param *param);
 void			set_direction(t_param *param, char c);
 
