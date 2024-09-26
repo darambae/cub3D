@@ -11,7 +11,6 @@ void	clean_tex(t_param *param)
 		free(param->tex[i].path);
 		param->tex[i].path = NULL;
 		mlx_destroy_image(param->mlx, param->tex[i].img);
-		//free(param->tex[i].addr);
 		i++;
 	}
 	free(param->tex);
@@ -32,13 +31,9 @@ void	clean_mlx(t_param *param)
 			mlx_destroy_image(param->mlx, param->img);
 			param->img = NULL;
 		}
-		// if (param->addr)
-		// {
-		// 	free(param->addr);
-		// 	param->addr = NULL;
-		// }
 	}
 	mlx_destroy_display(param->mlx);
+	free(param->mlx);
 	param->mlx = NULL;
 }
 
