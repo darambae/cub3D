@@ -19,18 +19,15 @@ void	clean_tex(t_param *param)
 
 void	clean_mlx(t_param *param)
 {
-	if (param->mlx)
+	if (param->window)
 	{
-		if (param->window)
-		{
-			mlx_destroy_window(param->mlx, param->window);
-			param->window = NULL;
-		}
-		if (param->img)
-		{
-			mlx_destroy_image(param->mlx, param->img);
-			param->img = NULL;
-		}
+		mlx_destroy_window(param->mlx, param->window);
+		param->window = NULL;
+	}
+	if (param->img)
+	{
+		mlx_destroy_image(param->mlx, param->img);
+		param->img = NULL;
 	}
 	mlx_destroy_display(param->mlx);
 	free(param->mlx);
@@ -43,12 +40,6 @@ void	clean_all(t_param *param)
 	{
 		if (param->tex[0].path)
 			clean_tex(param);
-		if (param->mlx)
-		{
-			// if (param->tex)
-			// 	clean_tex(param);
-			clean_mlx(param);
-		}
 		if (param->format)
 		{
 			free(param->format);
@@ -56,6 +47,8 @@ void	clean_all(t_param *param)
 		}
 		if (param->map)
 			clean_map(param->map, param->map_x);
+		if (param->mlx)
+			clean_mlx(param);
 	}
 	free(param);
 	param = NULL;

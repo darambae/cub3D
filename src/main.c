@@ -1,19 +1,5 @@
 #include "../cub.h"
 
-/* Pseudo code
-	1. parsing the map(.cub file) -> if success, go to step 2. else, print error
-message "Error\n" and exit the program
-	2. initialize the parameters
-	3. draw the map
-	4. handle the events
-	5. close the window (free the allocated memory)
-
-	structure of the program : 3 loops
-	 - first loop: mlx-loop
-	 - second loop: from x = 0 to x = width
-	 - third loop: while (!hit)
-	*/
-
 int	main(int ac, char **av)
 {
 	t_param	*param;
