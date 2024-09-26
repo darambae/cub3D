@@ -98,7 +98,6 @@ bool	closed_map(t_param *param, int x, int y)
 	return (true);
 }
 
-
 int	check_map(t_param *param)
 {
 	int	x;

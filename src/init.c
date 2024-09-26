@@ -22,8 +22,10 @@ void	init_texture(t_param *param)
 bool	alloc_param(t_param *param)
 {
 	param->tex = (t_texture *)malloc(sizeof(t_texture) * 4);
+	if (!param->tex)
+		return (false);
 	param->format = ft_calloc(6, sizeof(int));
-	if (!param->tex || !param->format)
+	if (!param->format)
 		return (false);
 	return (true);
 }
@@ -44,6 +46,7 @@ bool	set_screen(t_param *param)
 void	init_param(t_param *param)
 {
 	param->fd = 0;
+	param->mlx = NULL;
 	param->map = NULL;
 	param->map_y = 0;
 	param->map_x = 0;

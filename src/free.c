@@ -10,7 +10,8 @@ void	clean_tex(t_param *param)
 	{
 		free(param->tex[i].path);
 		param->tex[i].path = NULL;
-		mlx_destroy_image(param->mlx, param->tex[i].img);
+		if (param->tex[i].img)
+			mlx_destroy_image(param->mlx, param->tex[i].img);
 		i++;
 	}
 	free(param->tex);
@@ -41,10 +42,12 @@ void	clean_all(t_param *param)
 {
 	if (param)
 	{
+		if (param->tex[0].path)
+			clean_tex(param);
 		if (param->mlx)
 		{
-			if (param->tex)
-				clean_tex(param);
+			// if (param->tex)
+			// 	clean_tex(param);
 			clean_mlx(param);
 		}
 		if (param->format)
