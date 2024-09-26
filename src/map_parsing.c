@@ -17,7 +17,7 @@ void	check_char(char *line, int *i, t_param *param)
 		}
 		(*i)++;
 	}
-	return;
+	return ;
 }
 
 //check if line contains just "01NSEW \n and if there is only one player"
@@ -37,27 +37,6 @@ void	check_line(char *line, t_param *param)
 	if (i > param->map_y)
 		param->map_y = i;
 	return ;
-}
-
-// /*copy temp in map and add line at the end*/
-void	copy_map(char **map, char **temp, char *line)
-{
-	int	i;
-
-	i = 0;
-	if (temp)
-	{
-		while (temp[i])
-		{
-			map[i] = temp[i];
-			i++;
-		}
-	}
-	map[i++] = line;
-	map[i] = '\0';
-	if (temp)
-		free(temp);
-	temp = NULL;
 }
 
 // /*copy line in param->map until the end of file fd*/
@@ -97,7 +76,6 @@ bool	closed_map(t_param *param, int x, int y)
 		return (false);
 	return (true);
 }
-
 
 int	check_map(t_param *param)
 {

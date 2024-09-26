@@ -42,7 +42,6 @@ void	move_left_right(t_param *p, bool right)
 		p->pos = new_pos;
 }
 
-
 void	rotate(t_param *param, double ang)
 {
 	double	old_dir;

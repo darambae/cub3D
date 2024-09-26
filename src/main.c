@@ -1,7 +1,8 @@
 #include "../cub.h"
 
 /* Pseudo code
-	1. parsing the map(.cub file) -> if success, go to step 2. else, print error message "Error\n" and exit the program
+	1. parsing the map(.cub file) -> if success, go to step 2. else, print error
+message "Error\n" and exit the program
 	2. initialize the parameters
 	3. draw the map
 	4. handle the events
