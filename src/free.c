@@ -44,11 +44,7 @@ void	clean_all(t_param *param)
 		if (param->tex[0].path)
 			clean_tex(param);
 		if (param->mlx)
-		{
-			// if (param->tex)
-			// 	clean_tex(param);
 			clean_mlx(param);
-		}
 		if (param->format)
 		{
 			free(param->format);

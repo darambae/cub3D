@@ -98,25 +98,21 @@ int	check_format(char *line, t_param *param)
 int	check_texture(t_param *param)
 {
 	char	*line;
-	int		i;
 	int		map;
 
-	i = 0;
 	map = 0;
 	line = get_next_line(param->fd);
 	while (line)
 	{
 		map = check_format(line, param);
-		if (map == 1)
-		{
-			while (i < 6 && param->format[i] == 1)
-				i++;
-		}
-		if (map == -1 || (map == 1 && (i != 6
+		if (map == -1 || (map == 1 && (texture_parsed(param) != 6
 					|| get_map(param, line, param->fd) == -1
 					|| check_map(param) == -1)))
+		{
+			free(line);
 			ft_error("miss something in texture description\nThe format should \
 			be NO/SO/WE/EA/C/F follow by the texture's path\\n", param);
+		}
 		if (line && map != 1)
 			free(line);
 		line = get_next_line(param->fd);
