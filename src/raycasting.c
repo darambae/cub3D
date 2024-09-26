@@ -2,19 +2,16 @@
 
 double	calcul_wall_dist_hei(t_param *param)
 {
-	int		line_height;
 	double	wall_x;
 	t_ray	*r;
 
 	r = &param->ray;
 	get_perp_wall_dist(param);
-	line_height = (int)(SCREEN_H / r->perp_wall_dist);
-	// if (line_height > SCREEN_H)
-	// 	line_height = SCREEN_H;
-	r->draw_start = -line_height / 2 + SCREEN_H / 2;
-	if (r->draw_start < 0)
-		r->draw_start = 0;
-	r->draw_end = line_height / 2 + SCREEN_H / 2;
+	r->line_height = (int)(SCREEN_H / r->perp_wall_dist);
+	r->draw_start = -r->line_height / 2 + SCREEN_H / 2;
+	// if (r->draw_start < 0)
+	// 	r->draw_start = 0;
+	r->draw_end = r->line_height / 2 + SCREEN_H / 2;
 	if (r->draw_end >= SCREEN_H)
 		r->draw_end = SCREEN_H - 1;
 	if (r->side == 0)
