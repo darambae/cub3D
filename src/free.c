@@ -58,7 +58,7 @@ void	clean_all(t_param *param)
 			param->format = NULL;
 		}
 		if (param->map)
-			clean_map(param->map, param);
+			clean_map(param->map, param->map_x);
 	}
 	free(param);
 	param = NULL;

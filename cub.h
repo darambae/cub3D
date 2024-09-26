@@ -11,7 +11,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <stdint.h>
-# include "../mlx_linux/mlx.h"
+# include "./mlx_linux/mlx.h"
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
@@ -75,8 +75,8 @@ typedef struct s_param
 	int			fd;
 	int			*format;//0:NO, 1:EA, 2:SO, 3:WE, 4:F, 5:C
 	char		**map;
-	int			map_y;
-	int			map_x;
+	int			map_y;//number of char
+	int			map_x;//number of line
 	double		fov;
 	t_vec		pos;
 	t_vec		plane;
@@ -103,13 +103,13 @@ int				skip_space(char *line, int *i);
 int				get_number(int *n, char *line, int *i);
 
 //map parsing
-int				clean_map(char **map, t_param *param);
+int				clean_map(char **map, int max);
 void			check_line(char *line, t_param *param);
 void			copy_map(char **map, char **temp, char *line);
 int				get_map(t_param *param, char *line, int fd);
 bool			closed_map(t_param *param, int x, int y);
 int				check_map(t_param *param);
-void			 set_direction(t_param *param, char c);
+void			set_direction(t_param *param, char c);
 
 //vector calculation
 t_vec			add_vec(t_vec a, t_vec b);

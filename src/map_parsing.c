@@ -75,7 +75,7 @@ int	get_map(t_param *param, char *line, int fd)
 		temp = param->map;
 		param->map = malloc((++i + 1) * sizeof(char *));
 		if (!param->map)
-			return (clean_map(temp));
+			return (clean_map(temp, param->map_x));
 		copy_map(param->map, temp, line);
 		line = get_next_line(fd);
 	}
