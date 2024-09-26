@@ -16,12 +16,3 @@ void	get_perp_wall_dist(t_param *param)
 	if (r->perp_wall_dist < min_dist)
 		r->perp_wall_dist = min_dist;
 }
-
-// double normalize_angle(double angle) 
-// {
-//     angle = fmod(angle, 2 * PI); // Get remainder of angle divided by 2π
-//     if (angle < 0)
-//         angle += 2 * PI; // Adjust negative angles
-//     return angle;
-// }
-
