@@ -7,7 +7,7 @@ int	get_text_pix(t_ray r, int y, t_texture t)
 	t.tex_x = (int)(t.wall_x * (double)t.w);
 	if ((r.side == 0 && r.dir.x > 0) || (r.side == 1 && r.dir.y < 0))
 		t.tex_x = t.w - t.tex_x - 1;
-	t.step = 1.0 * t.h / (r.draw_end - r.draw_start);
+	t.step = 1.0 * t.h / r.line_height;
 	t.tex_pos = (y - r.draw_start) * t.step;
 	t.tex_y = (int)(t.tex_pos) % t.h;
 	if (t.tex_y < 0)
