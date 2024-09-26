@@ -39,7 +39,6 @@ typedef struct s_mini
 	int		color;
 }	t_mini;
 
-
 typedef struct s_ray
 {
 	t_vec	dir;
@@ -81,10 +80,10 @@ typedef struct s_param
 	char		*addr;
 	int			bits_per_pixel;
 	int			fd;
-	int			*format;//0:NO, 1:EA, 2:SO, 3:WE, 4:F, 5:C
+	int			*format;
 	char		**map;
-	int			map_y;//number of char
-	int			map_x;//number of line
+	int			map_y;
+	int			map_x;
 	double		fov;
 	t_vec		pos;
 	t_vec		plane;
@@ -141,7 +140,6 @@ void			setup_ray(t_param *param, int cur);
 
 //calculation
 void			get_perp_wall_dist(t_param *param);
-//double			normalize_angle(double angle);
 
 //utils
 int				create_rgb(int r, int g, int b);

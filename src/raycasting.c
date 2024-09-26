@@ -10,8 +10,6 @@ t_texture	calcul_wall_dist_hei(t_param *param)
 	get_perp_wall_dist(param);
 	r->line_height = (int)(SCREEN_H / r->perp_wall_dist);
 	r->draw_start = -r->line_height / 2 + SCREEN_H / 2;
-	// if (r->draw_start < 0)
-	// 	r->draw_start = 0;
 	r->draw_end = r->line_height / 2 + SCREEN_H / 2;
 	if (r->draw_end >= SCREEN_H)
 		r->draw_end = SCREEN_H - 1;

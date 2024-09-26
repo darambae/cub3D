@@ -19,8 +19,8 @@ void	move_back_forward(t_param *p, bool forward)
 		new_pos = sub_vec(p->pos, scale_vec(p->dir, sp));
 	else
 		return ;
-	if (is_valid_position(new_pos.x, p->pos.y, p) && 
-		is_valid_position(p->pos.x, new_pos.y, p))
+	if (is_valid_position(new_pos.x, p->pos.y, p)
+		&& is_valid_position(p->pos.x, new_pos.y, p))
 		p->pos = new_pos;
 }
 
@@ -37,8 +37,8 @@ void	move_left_right(t_param *p, bool right)
 		new_pos = sub_vec(p->pos, scale_vec(p->plane, sp));
 	else
 		return ;
-	if (is_valid_position(new_pos.x, p->pos.y, p) && 
-		is_valid_position(p->pos.x, new_pos.y, p))
+	if (is_valid_position(new_pos.x, p->pos.y, p)
+		&& is_valid_position(p->pos.x, new_pos.y, p))
 		p->pos = new_pos;
 }
 
@@ -50,10 +50,8 @@ void	rotate(t_param *param, double ang)
 
 	old_dir = param->dir.x;
 	old_plane = param->plane.x;
-
 	param->dir.x = param->dir.x * cos(ang) - param->dir.y * sin(ang);
 	param->dir.y = old_dir * sin(ang) + param->dir.y * cos(ang);
-
 	param->plane.x = param->plane.x * cos(ang) - param->plane.y * sin(ang);
 	param->plane.y = old_plane * sin(ang) + param->plane.y * cos(ang);
 }
