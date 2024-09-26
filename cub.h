@@ -124,8 +124,9 @@ t_vec			divide_vec(t_vec a, double n);
 
 // initializing parameters by reading .cub file
 void			init_param(t_param *param);
+bool			load_texture(t_param *param);
 int				create_rgb(int r, int g, int b);
-
+bool			set_screen(t_param *param);
 void			cast_rays_and_render(t_param *param);
 void			move_back_forward(t_param *param, bool forward);
 void			move_left_right(t_param *param, bool right);

@@ -55,6 +55,4 @@ void	parse_map_file(t_param *param, char **av)
 	check_texture(param);
 	if (!param->map)
 		ft_error("no map in the file.cub", param);
-	if (!load_texture(param))
-		exit(1);
 }

@@ -47,12 +47,8 @@ void	init_param(t_param *param)
 	param->map = NULL;
 	param->map_y = 0;
 	param->map_x = 0;
-	if (!alloc_param(param) || !set_screen(param))
-	{
-		printf("memory allocation failed");
-		clean_all(param);
-		exit(1);
-	}
+	if (!alloc_param(param))
+		ft_error("memory allocation failed", param);
 	init_texture(param);
 	param->ray.draw_start = 0;
 	param->ray.draw_end = 0;
