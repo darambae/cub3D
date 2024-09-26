@@ -15,8 +15,7 @@ int	main(int ac, char **av)
 	parse_map_file(param, av);
 	if (!set_screen(param))
 		ft_error("memory allocation failed", param);
-	if (!load_texture(param))
-		exit(1);
+	load_texture(param);
 	cast_rays_and_render(param);
 	event_handler(param);
 	mlx_loop(param->mlx);
