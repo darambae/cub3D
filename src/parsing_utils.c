@@ -15,7 +15,7 @@ int	get_number(int *n, char *line, int *i)
 {
 	*n = 0;
 	if (line[*i] == ',')
-			(*i)++;
+		(*i)++;
 	if (ft_isdigit(line[*i]))
 	{
 		*n = ft_atoi(line + *i);
@@ -63,4 +63,25 @@ void	set_direction(t_param *param, char c)
 		param->plane.y = param->fov;
 	else if (param->dir.x < 0)
 		param->plane.y = param->fov * -1;
+}
+
+// /*copy temp in map and add line at the end*/
+void	copy_map(char **map, char **temp, char *line)
+{
+	int	i;
+
+	i = 0;
+	if (temp)
+	{
+		while (temp[i])
+		{
+			map[i] = temp[i];
+			i++;
+		}
+	}
+	map[i++] = line;
+	map[i] = '\0';
+	if (temp)
+		free(temp);
+	temp = NULL;
 }

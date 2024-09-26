@@ -56,8 +56,8 @@ int	keep_format(char *line, t_param *param)
 
 	second_letter = 'O';
 	i = 0;
-	if ((*line == 'F' && param->format[4] == 0) ||
-		(*line == 'C' && param->format[5]== 0))
+	if ((*line == 'F' && param->format[4] == 0)
+		|| (*line == 'C' && param->format[5] == 0))
 		return (get_color(line, param));
 	else if (*line == 'E')
 	{
@@ -112,10 +112,11 @@ int	check_texture(t_param *param)
 			while (i < 6 && param->format[i] == 1)
 				i++;
 		}
-		if (map == -1 || (map == 1 &&
-			(i != 6 || get_map(param, line, param->fd) == -1
-			|| check_map(param) == -1)))
-			ft_error("miss something in texture description\nThe format should be NO/SO/WE/EA/C/F follow by the texture's path\\n", param);
+		if (map == -1 || (map == 1 && (i != 6
+					|| get_map(param, line, param->fd) == -1
+					|| check_map(param) == -1)))
+			ft_error("miss something in texture description\nThe format should \
+			be NO/SO/WE/EA/C/F follow by the texture's path\\n", param);
 		if (line && map != 1)
 			free(line);
 		line = get_next_line(param->fd);

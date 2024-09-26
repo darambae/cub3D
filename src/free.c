@@ -1,6 +1,5 @@
 #include "../cub.h"
 
-
 void	clean_tex(t_param *param)
 {
 	int	i;
