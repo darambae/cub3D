@@ -31,7 +31,7 @@ void	print_wall(t_param *param)
 	while (i < param->map_x)
 	{
 		j = 0;
-		while (j < param->map_y)
+		while (j < (int)ft_strlen(param->map[i]))
 		{
 			if (param->map[i][j] == '1')
 				print_square(param, i, j);

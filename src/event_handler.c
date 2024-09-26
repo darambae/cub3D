@@ -2,12 +2,13 @@
 
 int	close_window(t_param *param)
 {
+	clean_all(param);
 	//free all malloced memory
-	mlx_destroy_image(param->mlx, param->img);
-	mlx_destroy_window(param->mlx, param->window);
-	mlx_destroy_display(param->mlx);
-	free(param->tex);
-	free(param->mlx);
+	// mlx_destroy_image(param->mlx, param->img);
+	// mlx_destroy_window(param->mlx, param->window);
+	// mlx_destroy_display(param->mlx);
+	// free(param->tex);
+	// free(param->mlx);
 	exit(0);
 }
 

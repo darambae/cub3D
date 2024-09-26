@@ -29,12 +29,12 @@ int	get_number(int *n, char *line, int *i)
 }
 
 //free la map
-int	clean_map(char **map)
+int	clean_map(char **map, int max)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (i < max && map[i])
 	{
 		free(map[i]);
 		map[i] = NULL;
