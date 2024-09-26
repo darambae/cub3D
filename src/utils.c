@@ -20,3 +20,13 @@ void	ft_error(char *str, t_param *param)
 	printf("ERROR: %s\n", str);
 	exit (1);
 }
+
+int	texture_parsed(t_param *param)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6 && param->format[i] == 1)
+		i++;
+	return (i);
+}
