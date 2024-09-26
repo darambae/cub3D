@@ -1,22 +1,18 @@
 #include "../cub.h"
 
-int	get_text_pix(t_ray r, int y, t_texture t, double wall_x)
+int	get_text_pix(t_ray r, int y, t_texture t)
 {
 	int		color;
-	int		tex_x;
-	int		tex_y;
-	double	tex_pos;
-	double	step;
 
-	tex_x = (int)(wall_x * (double)t.w);
+	t.tex_x = (int)(t.wall_x * (double)t.w);
 	if ((r.side == 0 && r.dir.x > 0) || (r.side == 1 && r.dir.y < 0))
-		tex_x = t.w - tex_x - 1;
-	step = 1.0 * t.h / (r.draw_end - r.draw_start);
-	tex_pos = (y - r.draw_start) * step;
-	tex_y = (int)(tex_pos) % t.h;
-	if (tex_y < 0)
-		tex_y += t.h;
-	color = *(unsigned int *)(t.addr + (tex_y * t.w + tex_x) * \
+		t.tex_x = t.w - t.tex_x - 1;
+	t.step = 1.0 * t.h / r.line_height;
+	t.tex_pos = (y - r.draw_start) * t.step;
+	t.tex_y = (int)(t.tex_pos) % t.h;
+	if (t.tex_y < 0)
+		t.tex_y += t.h;
+	color = *(unsigned int *)(t.addr + (t.tex_y * t.w + t.tex_x) * \
 		(t.bits_per_pixel / 8));
 	return (color);
 }
@@ -43,7 +39,7 @@ t_texture	get_wall_dir(t_param *param)
 	return (param->tex[tex_num]);
 }
 
-void	verline(t_param *param, int x, t_texture t, double wall_x)
+void	verline(t_param *param, int x, t_texture t)
 {
 	double	y;
 
@@ -55,7 +51,7 @@ void	verline(t_param *param, int x, t_texture t, double wall_x)
 	}
 	while (y < param->ray.draw_end)
 	{
-		my_mlxx_pixel_put(param, x, y, get_text_pix(param->ray, y, t, wall_x));
+		my_mlxx_pixel_put(param, x, y, get_text_pix(param->ray, y, t));
 		y++;
 	}
 	while (y < SCREEN_H)

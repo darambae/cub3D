@@ -66,8 +66,11 @@ typedef struct s_texture
 	int		size_line;
 	int		endian;
 	int		line_height;
-	// double	tex_pos;
-	// double	step;
+	int		tex_x;
+	int		tex_y;
+	double	tex_pos;
+	double	step;
+	double	wall_x;
 }	t_texture;
 
 typedef struct s_param
@@ -120,7 +123,6 @@ void			set_direction(t_param *param, char c);
 t_vec			add_vec(t_vec a, t_vec b);
 t_vec			sub_vec(t_vec a, t_vec b);
 t_vec			scale_vec(t_vec a, double n);
-t_vec			divide_vec(t_vec a, double n);
 
 // initializing parameters by reading .cub file
 void			init_param(t_param *param);
@@ -132,14 +134,14 @@ void			move_back_forward(t_param *param, bool forward);
 void			move_left_right(t_param *param, bool right);
 void			rotate(t_param *param, double angle);
 void			event_handler(t_param *param);
-void			verline(t_param *param, int x, t_texture t, double wall_x);
+void			verline(t_param *param, int x, t_texture t);
 t_texture		get_wall_dir(t_param *param);
-int				get_text_pix(t_ray r, int y, t_texture t, double wall_x);
+int				get_text_pix(t_ray r, int y, t_texture t);
 void			setup_ray(t_param *param, int cur);
 
 //calculation
 void			get_perp_wall_dist(t_param *param);
-double			normalize_angle(double angle);
+//double			normalize_angle(double angle);
 
 //utils
 int				create_rgb(int r, int g, int b);

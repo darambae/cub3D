@@ -1,11 +1,12 @@
 #include "../cub.h"
 
-double	calcul_wall_dist_hei(t_param *param)
+t_texture	calcul_wall_dist_hei(t_param *param)
 {
-	double	wall_x;
-	t_ray	*r;
+	t_ray		*r;
+	t_texture	t;
 
 	r = &param->ray;
+	t = get_wall_dir(param);
 	get_perp_wall_dist(param);
 	r->line_height = (int)(SCREEN_H / r->perp_wall_dist);
 	r->draw_start = -r->line_height / 2 + SCREEN_H / 2;
@@ -15,11 +16,11 @@ double	calcul_wall_dist_hei(t_param *param)
 	if (r->draw_end >= SCREEN_H)
 		r->draw_end = SCREEN_H - 1;
 	if (r->side == 0)
-		wall_x = param->pos.y + r->perp_wall_dist * r->dir.y;
+		t.wall_x = param->pos.y + r->perp_wall_dist * r->dir.y;
 	else
-		wall_x = param->pos.x + r->perp_wall_dist * r->dir.x;
-	wall_x -= floor(wall_x);
-	return (wall_x);
+		t.wall_x = param->pos.x + r->perp_wall_dist * r->dir.x;
+	t.wall_x -= floor(t.wall_x);
+	return (t);
 }
 
 void	calcul_step_side_dist(t_param *param)
@@ -109,7 +110,7 @@ void	cast_rays_and_render(t_param *param)
 	{
 		setup_ray(param, cur);
 		dda(param);
-		verline(param, cur, get_wall_dir(param), calcul_wall_dist_hei(param));
+		verline(param, cur, calcul_wall_dist_hei(param));
 		cur++;
 	}
 	print_minimap(param);
