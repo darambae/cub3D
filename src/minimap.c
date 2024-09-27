@@ -62,7 +62,7 @@ void	print_ray_on_minimap(t_param *p)
 				p->mini.scale || ray.map.y >= p->map_y * p->mini.scale \
 				|| p->map[(int)(ray.map.x / p->mini.scale)] \
 				[(int)(ray.map.y / p->mini.scale)] == '1')
-				return ;
+				break ;
 			my_mlxx_pixel_put(p, ray.map.x, ray.map.y,
 				create_rgb(255, 255, 0));
 			ray_length += 0.1;
