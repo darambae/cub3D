@@ -102,10 +102,10 @@ typedef struct s_param
 void			parse_map_file(t_param *param, char **av);
 
 //texture path and color parsing
-int				get_color(char *line, t_param *param);
-int				get_path(char *line, char second_letter, int i, t_param *param);
-int				keep_format(char *line, t_param *param);
-int				check_format(char *line, t_param *param);
+int				get_color(t_param *param);
+int				get_path(char second_letter, int i, t_param *param);
+int				keep_format(t_param *param);
+int				check_format(t_param *param);
 void			check_texture(t_param *param);
 int				skip_space(char *line, int *i);
 int				get_number(int *n, char *line, int *i);

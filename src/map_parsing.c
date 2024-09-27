@@ -32,7 +32,7 @@ void	check_line(t_param *param)
 	check_char(&i, param);
 	if (param->current_line[i] == '\n')
 		param->current_line[i] = '\0';
-	if (param->current_line[i] != '\0')
+	if (param->current_line[i])
 		ft_error("only 01NSEW are accepted as symbol for the map", param);
 	if (i > param->map_y)
 		param->map_y = i;
