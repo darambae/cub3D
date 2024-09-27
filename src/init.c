@@ -48,6 +48,7 @@ void	init_param(t_param *param)
 	param->fd = 0;
 	param->mlx = NULL;
 	param->map = NULL;
+	param->current_line = NULL;
 	param->map_y = 0;
 	param->map_x = 0;
 	if (!alloc_param(param))
