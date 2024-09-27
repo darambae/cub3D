@@ -82,6 +82,7 @@ typedef struct s_param
 	int			fd;
 	int			*format;
 	char		**map;
+	char		*current_line;
 	int			map_y;
 	int			map_x;
 	double		fov;
@@ -110,10 +111,10 @@ int				skip_space(char *line, int *i);
 int				get_number(int *n, char *line, int *i);
 
 //map parsing
-int				clean_map(char **map, int max);
-void			check_line(char *line, t_param *param);
-void			copy_map(char **map, char **temp, char *line);
-int				get_map(t_param *param, char *line, int fd);
+int				clean_map(char **map);
+void			check_line(t_param *param);
+void			copy_map(t_param *param, char **temp);
+int				get_map(t_param *param);
 bool			closed_map(t_param *param, int max_x, int x, int y);
 int				check_map(t_param *param);
 void			set_direction(t_param *param, char c);

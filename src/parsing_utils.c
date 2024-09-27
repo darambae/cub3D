@@ -29,12 +29,12 @@ int	get_number(int *n, char *line, int *i)
 }
 
 //free la map
-int	clean_map(char **map, int max)
+int	clean_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (i < max && map[i])
+	while (map[i] != NULL)
 	{
 		free(map[i]);
 		map[i] = NULL;
@@ -66,7 +66,7 @@ void	set_direction(t_param *param, char c)
 }
 
 // /*copy temp in map and add line at the end*/
-void	copy_map(char **map, char **temp, char *line)
+void	copy_map(t_param *param, char **temp)
 {
 	int	i;
 
@@ -75,12 +75,12 @@ void	copy_map(char **map, char **temp, char *line)
 	{
 		while (temp[i])
 		{
-			map[i] = temp[i];
+			param->map[i] = temp[i];
 			i++;
 		}
 	}
-	map[i++] = line;
-	map[i] = '\0';
+	param->map[i++] = param->current_line;
+	param->map[i] = '\0';
 	if (temp)
 		free(temp);
 	temp = NULL;

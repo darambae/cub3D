@@ -48,7 +48,12 @@ void	clean_all(t_param *param)
 			param->format = NULL;
 		}
 		if (param->map)
-			clean_map(param->map, param->map_x);
+			clean_map(param->map);
+		if (param->current_line)
+		{
+			free(param->current_line);
+			param->current_line = NULL;
+		}
 		if (param->mlx)
 			clean_mlx(param);
 	}
