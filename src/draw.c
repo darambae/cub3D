@@ -25,16 +25,16 @@ t_texture	get_wall_dir(t_param *param)
 	if (param->ray.side == 0)
 	{
 		if (param->ray.dir.x > 0)
-			tex_num = 1;
+			tex_num = 2; //south
 		else
-			tex_num = 3;
+			tex_num = 0; //north
 	}
 	else
 	{
 		if (param->ray.dir.y > 0)
-			tex_num = 2;
+			tex_num = 1; //east
 		else
-			tex_num = 0;
+			tex_num = 3; //west
 	}
 	return (param->tex[tex_num]);
 }
