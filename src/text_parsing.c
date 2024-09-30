@@ -23,6 +23,8 @@ int	get_color(t_param *param)
 		}
 		return (0);
 	}
+	else
+		ft_error("RGB number is incorrect", param);
 	return (-1);
 }
 
