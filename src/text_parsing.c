@@ -23,6 +23,8 @@ int	get_color(t_param *param)
 		}
 		return (0);
 	}
+	else
+		ft_error("RGB number is incorrect", param);
 	return (-1);
 }
 
@@ -98,8 +100,10 @@ int	check_format(t_param *param)
 void	check_texture(t_param *param)
 {
 	int		map;
+	int		stop;
 
 	map = 0;
+	stop = 0;
 	param->current_line = get_next_line(param->fd);
 	while (param->current_line)
 	{
