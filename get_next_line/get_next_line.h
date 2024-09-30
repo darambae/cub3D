@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 10:23:50 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/14 15:10:09 by dabae            ###   ########.fr       */
+/*   Updated: 2024/09/30 10:44:34 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_line
 	struct s_line	*next;
 }			t_line;
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int finish_fd);
 
 int		found_n(t_line *buf_list);
 
