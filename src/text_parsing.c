@@ -100,7 +100,7 @@ void	check_texture(t_param *param)
 	int		map;
 
 	map = 0;
-	param->current_line = get_next_line(param->fd);
+	param->current_line = get_next_line(param->fd, 0);
 	while (param->current_line)
 	{
 		map = check_format(param);
@@ -112,6 +112,6 @@ void	check_texture(t_param *param)
 			free(param->current_line);
 			param->current_line = NULL;
 		}
-		param->current_line = get_next_line(param->fd);
+		param->current_line = get_next_line(param->fd, 0);
 	}
 }

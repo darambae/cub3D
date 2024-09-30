@@ -56,7 +56,7 @@ int	get_map(t_param *param)
 		if (!param->map)
 			return (clean_map(temp));
 		copy_map(param, temp);
-		param->current_line = get_next_line(param->fd);
+		param->current_line = get_next_line(param->fd, 0);
 	}
 	param->map_x = i;
 	return (0);

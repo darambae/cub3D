@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 12:07:09 by dabae             #+#    #+#             */
-/*   Updated: 2024/03/14 15:16:25 by dabae            ###   ########.fr       */
+/*   Updated: 2024/09/30 10:44:08 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ static	void	create_list(t_line **buf_list, int fd)
 	}
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int finish_fd)
 {
 	static t_line	*buf_list = NULL;
 	char			*line;
@@ -138,7 +138,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	retrieve_line(buf_list, &line);
 	clean_keep_rest(&buf_list);
-	if (line[0] == '\0')
+	if (line[0] == '\0' || finish_fd == 1)
 	{
 		free_list(buf_list);
 		buf_list = NULL;
