@@ -21,7 +21,7 @@ void	my_mlxx_pixel_put(t_param *param, int x, int y, int color)
 void	ft_error(char *str, t_param *param)
 {
 	if (param->fd > 0)
-	{	
+	{
 		get_next_line(param->fd, 1);
 		close(param->fd);
 	}
