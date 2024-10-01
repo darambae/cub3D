@@ -25,7 +25,6 @@
 # define ESC 65307
 # define LOOK_LEFT	65361
 # define LOOK_RIGHT	65363
-# define PI 3.14159
 
 typedef struct s_vec
 {
@@ -157,4 +156,8 @@ void			clean_tex(t_param *param);
 //bonus
 void			print_minimap(t_param *param);
 void			print_direction(t_param *param);
+
+
+char **transpose_map(char **original_map, int height, int width);
+
 #endif

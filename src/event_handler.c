@@ -19,9 +19,9 @@ int	key_press(int keycode, t_param *param)
 	else if (keycode == ESC)
 		close_window(param);
 	else if (keycode == LOOK_RIGHT)
-		rotate(param, 0.1);
-	else if (keycode == LOOK_LEFT)
 		rotate(param, -0.1);
+	else if (keycode == LOOK_LEFT)
+		rotate(param, 0.1);
 	return (0);
 }
 

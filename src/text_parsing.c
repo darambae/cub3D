@@ -116,4 +116,19 @@ void	check_texture(t_param *param)
 		}
 		param->current_line = get_next_line(param->fd, 0);
 	}
+	param->map = transpose_map(param->map, param->map_x, param->map_y);
+	int tmp;
+	tmp = param->map_x;
+	param->map_x = param->map_y;
+	param->map_y = tmp;
+	tmp = param->pos.x;
+	param->pos.x = param->pos.y;
+	param->pos.y = tmp;
+	tmp = param->dir.x;
+	param->dir.x = param->dir.y;
+	param->dir.y = tmp;
+	tmp = param->plane.x;
+	param->plane.x = param->plane.y;
+	param->plane.y = tmp;
+
 }
