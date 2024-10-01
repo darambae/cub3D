@@ -32,9 +32,9 @@ t_texture	get_wall_dir(t_param *param)
 	else
 	{
 		if (param->ray.dir.y > 0)
-			tex_num = 1; //east
+			tex_num = 3; //east
 		else
-			tex_num = 3; //west
+			tex_num = 1; //west
 	}
 	return (param->tex[tex_num]);
 }

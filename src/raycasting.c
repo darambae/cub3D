@@ -99,35 +99,19 @@ void	setup_ray(t_param *param, int cur)
 	calcul_step_side_dist(param);
 }
 
+
 void	cast_rays_and_render(t_param *param)
 {
 	int	cur;
 
-	cur = SCREEN_W - 1;  // Start from the rightmost column (East)
-	while (cur >= 0)     // Render to the leftmost column (West)
+	cur = 0;
+	while (cur < SCREEN_W)
 	{
 		setup_ray(param, cur);
 		dda(param);
 		verline(param, cur, calcul_wall_dist_hei(param));
-		cur--;  // Decrement to move from East to West
+		cur++;
 	}
 	print_minimap(param);
 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
 }
-
-
-// void	cast_rays_and_render(t_param *param)
-// {
-// 	int	cur;
-
-// 	cur = 0;
-// 	while (cur < SCREEN_W)
-// 	{
-// 		setup_ray(param, cur);
-// 		dda(param);
-// 		verline(param, cur, calcul_wall_dist_hei(param));
-// 		cur++;
-// 	}
-// 	print_minimap(param);
-// 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
-// }

@@ -34,7 +34,7 @@ void	print_wall(t_param *param)
 		while (j < (int)ft_strlen(param->map[i]))
 		{
 			if (param->map[i][j] == '1')
-				print_square(param, i, j);
+				print_square(param, j, i);
 			j++;
 		}
 		i++;
@@ -63,7 +63,7 @@ void	print_ray_on_minimap(t_param *p)
 				|| p->map[(int)(ray.map.x / p->mini.scale)] \
 				[(int)(ray.map.y / p->mini.scale)] == '1')
 				break ;
-			my_mlxx_pixel_put(p, ray.map.y, ray.map.x,
+			my_mlxx_pixel_put(p, ray.map.x, ray.map.y,
 				create_rgb(255, 255, 0));
 			ray_length += 0.1;
 		}
@@ -84,7 +84,7 @@ void	print_player(t_param *param)
 	{
 		j = -2;
 		while (j++ < 2)
-			my_mlxx_pixel_put(param, player_y + j, player_x + i, \
+			my_mlxx_pixel_put(param, player_x + i, player_y + j, \
 				create_rgb(255, 0, 0));
 	}
 }

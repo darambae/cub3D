@@ -25,5 +25,4 @@ int	main(int ac, char **av)
 	else
 		printf("Double-check your arguments\n");
 	return (1);
-	
 }
