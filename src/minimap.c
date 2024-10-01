@@ -13,9 +13,9 @@ void	print_square(t_param *param, int x, int y)
 		j = 0;
 		while (j < param->mini.scale)
 		{
-			screen_x = x * param->mini.scale + i;
-			screen_y = y * param->mini.scale + j;
-			my_mlxx_pixel_put(param, screen_x, screen_y, param->mini.color);
+			screen_x = x * param->mini.scale + i + 10;
+			screen_y = y * param->mini.scale + j + 10;
+			my_mlxx_pixel_put(param, screen_y, screen_x, param->mini.color);
 			j++;
 		}
 		i++;
@@ -34,7 +34,7 @@ void	print_wall(t_param *param)
 		while (j < (int)ft_strlen(param->map[i]))
 		{
 			if (param->map[i][j] == '1')
-				print_square(param, i, j);
+				print_square(param, j, i);
 			j++;
 		}
 		i++;
@@ -63,8 +63,8 @@ void	print_ray_on_minimap(t_param *p)
 				|| p->map[(int)(ray.map.x / p->mini.scale)] \
 				[(int)(ray.map.y / p->mini.scale)] == '1')
 				break ;
-			my_mlxx_pixel_put(p, ray.map.x, ray.map.y,
-				create_rgb(255, 255, 0));
+			my_mlxx_pixel_put(p, ray.map.x + 10, ray.map.y + 10,
+				create_trgb(200, 255, 255, 0));
 			ray_length += 0.1;
 		}
 	}
@@ -84,7 +84,7 @@ void	print_player(t_param *param)
 	{
 		j = -2;
 		while (j++ < 2)
-			my_mlxx_pixel_put(param, player_x + i, player_y + j, \
+			my_mlxx_pixel_put(param, player_x + i + 10, player_y + j + 10, \
 				create_rgb(255, 0, 0));
 	}
 }

@@ -5,6 +5,11 @@ int	create_rgb(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
 void	my_mlxx_pixel_put(t_param *param, int x, int y, int color)
 {
 	char	*dst;
@@ -16,7 +21,7 @@ void	my_mlxx_pixel_put(t_param *param, int x, int y, int color)
 void	ft_error(char *str, t_param *param)
 {
 	if (param->fd > 0)
-	{	
+	{
 		get_next_line(param->fd, 1);
 		close(param->fd);
 	}

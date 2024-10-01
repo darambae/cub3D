@@ -25,7 +25,6 @@
 # define ESC 65307
 # define LOOK_LEFT	65361
 # define LOOK_RIGHT	65363
-# define PI 3.14159
 
 typedef struct s_vec
 {
@@ -145,6 +144,7 @@ void			get_perp_wall_dist(t_param *param);
 
 //utils
 int				create_rgb(int r, int g, int b);
+int				create_trgb(int t, int r, int g, int b);
 void			my_mlxx_pixel_put(t_param *param, int x, int y, int color);
 
 //error management
@@ -155,5 +155,9 @@ void			clean_tex(t_param *param);
 
 //bonus
 void			print_minimap(t_param *param);
+void			print_direction(t_param *param);
+
+
+char **transpose_map(char **original_map, int height, int width);
 
 #endif

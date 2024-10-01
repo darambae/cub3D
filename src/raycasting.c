@@ -99,6 +99,7 @@ void	setup_ray(t_param *param, int cur)
 	calcul_step_side_dist(param);
 }
 
+
 void	cast_rays_and_render(t_param *param)
 {
 	int	cur;
@@ -113,4 +114,5 @@ void	cast_rays_and_render(t_param *param)
 	}
 	print_minimap(param);
 	mlx_put_image_to_window(param->mlx, param->window, param->img, 0, 0);
+	//print_direction(param);
 }

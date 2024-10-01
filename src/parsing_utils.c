@@ -47,14 +47,14 @@ int	clean_map(char **map)
 
 void	set_direction(t_param *param, char c)
 {
-	if (c == 'E')
+	if (c == 'S')
+		param->dir.y++;
+	else if (c == 'N')
+		param->dir.y--;
+	else if (c == 'E')
 		param->dir.x++;
 	else if (c == 'W')
 		param->dir.x--;
-	else if (c == 'S')
-		param->dir.y--;
-	else if (c == 'N')
-		param->dir.y++;
 	if (param->dir.y > 0)
 		param->plane.x = param->fov * -1;
 	else if (param->dir.y < 0)
