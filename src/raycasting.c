@@ -95,7 +95,7 @@ void	setup_ray(t_param *param, int cur)
 		ray->delta_dist.y = 1;
 	}
 	else
-		ray->delta_dist = (t_vec){fabs(1 / ray->dir.y), fabs(1 / ray->dir.x)};
+		ray->delta_dist = (t_vec){fabs(1 / ray->dir.x), fabs(1 / ray->dir.y)};
 	calcul_step_side_dist(param);
 }
 

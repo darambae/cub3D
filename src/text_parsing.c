@@ -124,11 +124,11 @@ void	check_texture(t_param *param)
 	tmp = param->pos.x;
 	param->pos.x = param->pos.y;
 	param->pos.y = tmp;
-	tmp = param->dir.x;
-	param->dir.x = param->dir.y;
-	param->dir.y = tmp;
-	tmp = param->plane.x;
-	param->plane.x = param->plane.y;
-	param->plane.y = tmp;
+	// tmp = param->dir.x;
+	// param->dir.x = param->dir.y;
+	// param->dir.y = tmp;
+	// tmp = param->plane.x;
+	// param->plane.x = param->plane.y;
+	// param->plane.y = tmp;
 
 }
