@@ -24,7 +24,7 @@ int	skip_space(char *line, int *i)
 	return (0);
 }
 
-int	get_number(int *n, char *line, int *i)
+int	get_color_num(int *n, char *line, int *i)
 {
 	*n = 0;
 	if (line[*i] == ',')

@@ -1,6 +1,16 @@
 #include "../cub.h"
 
 //free la map
+void	clean_transposed_map(char **map, int height)
+{
+	int	i;
+
+	i = -1;
+	while (++i < height)
+		free(map[i]);
+	free(map);
+}
+
 int	clean_map(char **map)
 {
 	int	i;
@@ -67,7 +77,7 @@ void	clean_all(t_param *param)
 			param->format = NULL;
 		}
 		if (param->map)
-			clean_map(param->map);
+			clean_transposed_map(param->map, param->map_x);
 		if (param->current_line)
 		{
 			free(param->current_line);

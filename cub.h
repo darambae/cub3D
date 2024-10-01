@@ -108,7 +108,7 @@ int				keep_format(t_param *param);
 int				check_format(t_param *param);
 void			check_texture(t_param *param);
 int				skip_space(char *line, int *i);
-int				get_number(int *n, char *line, int *i);
+int				get_color_num(int *n, char *line, int *i);
 
 //map parsing
 int				clean_map(char **map);

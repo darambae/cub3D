@@ -6,25 +6,26 @@ int	get_color(t_param *param)
 	int		g;
 	int		b;
 	int		i;
+	char	*s;
 
 	i = 1;
-	if (skip_space(param->current_line, &i) == 0 && get_number(&r, param->current_line, &i) != -1 \
-		&& get_number(&g, param->current_line, &i) != -1 && get_number(&b, param->current_line, &i) != -1)
+	s = param->current_line;
+	if (skip_space(s, &i) == 0 && get_color_num(&r, s, &i) != -1 \
+	&& get_color_num(&g, s, &i) != -1 && get_color_num(&b, s, &i) != -1)
 	{
-		if (param->current_line[0] == 'F')
+		if (s[0] == 'F')
 		{
 			param->color_floor = create_rgb(r, g, b);
 			param->format[4] = 1;
 		}
-		else if (param->current_line[0] == 'C')
+		else if (s[0] == 'C')
 		{
 			param->color_ceiling = create_rgb(r, g, b);
 			param->format[5] = 1;
 		}
 		return (0);
 	}
-	else
-		ft_error("RGB number is incorrect", param);
+	ft_error("RGB number is incorrect", param);
 	return (-1);
 }
 
@@ -101,7 +102,6 @@ int	check_format(t_param *param)
 void	check_texture(t_param *param)
 {
 	int		map;
-	int		tmp;
 
 	map = 0;
 	param->current_line = get_next_line(param->fd, 0);
@@ -118,11 +118,4 @@ void	check_texture(t_param *param)
 		}
 		param->current_line = get_next_line(param->fd, 0);
 	}
-	param->map = transpose_map(param->map, param->map_x, param->map_y);
-	tmp = param->map_x;
-	param->map_x = param->map_y;
-	param->map_y = tmp;
-	tmp = param->pos.x;
-	param->pos.x = param->pos.y;
-	param->pos.y = tmp;
 }
