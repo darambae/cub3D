@@ -64,7 +64,7 @@ void	print_ray_on_minimap(t_param *p)
 				[(int)(ray.map.y / p->mini.scale)] == '1')
 				break ;
 			my_mlxx_pixel_put(p, ray.map.x + 10, ray.map.y + 10,
-				create_rgb(255, 255, 0));
+				create_trgb(200, 255, 255, 0));
 			ray_length += 0.1;
 		}
 	}
@@ -87,6 +87,18 @@ void	print_player(t_param *param)
 			my_mlxx_pixel_put(param, player_x + i + 10, player_y + j + 10, \
 				create_rgb(255, 0, 0));
 	}
+}
+
+void	print_direction(t_param *param)
+{
+	// mlx_string_put(param->mlx, param->window, 5, SCREEN_W / (param->mini.scale * 2), create_rgb(0, 0, 0), "N");
+	// mlx_string_put(param->mlx, param->window, SCREEN_H / (param->mini.scale * 2), 10, create_rgb(0, 0, 0), "W");
+	// mlx_string_put(param->mlx, param->window, SCREEN_H / param->mini.scale, SCREEN_W / (param->mini.scale * 2), create_rgb(0, 0, 0), "S");
+	// mlx_string_put(param->mlx, param->window, SCREEN_H / (param->mini.scale * 2), SCREEN_W / param->mini.scale, create_rgb(0, 0, 0), "E");
+	mlx_string_put(param->mlx, param->window, 4, param->map_x * param->mini.scale, create_rgb(0, 0, 0), "N");
+	// printf("map_x: %d\n", param->map_x);
+	// printf("map_y: %d\n", param->map_y);
+	mlx_string_put(param->mlx, param->window, param->map_y * param->mini.scale, 4, create_rgb(0, 0, 0), "W");
 }
 
 void	print_minimap(t_param *param)
