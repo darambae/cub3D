@@ -118,6 +118,7 @@ bool			closed_map(t_param *param, int max_x, int x, int y);
 int				check_map(t_param *param);
 void			set_direction(t_param *param, char c);
 int				texture_parsed(t_param *param);
+char			**transpose_map(char **original_map, int height, int width);
 
 //vector calculation
 t_vec			add_vec(t_vec a, t_vec b);
@@ -156,7 +157,5 @@ void			clean_tex(t_param *param);
 //bonus
 void			print_minimap(t_param *param);
 
-
-char 			**transpose_map(char **original_map, int height, int width);
 
 #endif

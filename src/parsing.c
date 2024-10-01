@@ -1,5 +1,33 @@
 #include "../cub.h"
 
+char	**transpose_map(char **original_map, int height, int width)
+{
+	char	**transposed_map;
+	int		x;
+	int		y;
+
+	transposed_map = malloc(width * sizeof(char *));
+	x = -1;
+	while (++x < width)
+		transposed_map[x] = malloc((height + 1) * sizeof(char));
+	y = -1;
+	while (++y < height)
+	{
+		x = -1;
+		while (++x < width)
+		{
+			if ((size_t)x < strlen(original_map[y]))
+				transposed_map[x][y] = original_map[y][x];
+			else
+				transposed_map[x][y] = ' ';
+		}
+	}
+	x = -1;
+	while (++x < width)
+		transposed_map[x][height] = '\0';
+	return (transposed_map);
+}
+
 bool	load_texture(t_param *param)
 {
 	int		i;
