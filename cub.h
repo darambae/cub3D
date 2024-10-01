@@ -155,9 +155,8 @@ void			clean_tex(t_param *param);
 
 //bonus
 void			print_minimap(t_param *param);
-void			print_direction(t_param *param);
 
 
-char **transpose_map(char **original_map, int height, int width);
+char 			**transpose_map(char **original_map, int height, int width);
 
 #endif

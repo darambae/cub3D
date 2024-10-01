@@ -39,20 +39,6 @@ t_texture	get_wall_dir(t_param *param)
 	return (param->tex[tex_num]);
 }
 
-void	print_direction(t_param *param)
-{
-	mlx_string_put(param->mlx, param->window, 10, param->map_x \
-		* param->mini.scale, create_rgb(0, 0, 0), "N");
-	mlx_string_put(param->mlx, param->window, param->map_x \
-		* param->mini.scale / 2, 20, create_rgb(0, 0, 0), "W");
-	mlx_string_put(param->mlx, param->window, param->map_x \
-		* param->mini.scale / 2, param->map_y * param->mini.scale + 10, \
-		create_rgb(0, 0, 0), "S");
-	mlx_string_put(param->mlx, param->window, param->map_x \
-		* param->mini.scale, param->map_x * param->mini.scale, \
-		create_rgb(0, 0, 0), "E");
-}
-
 void	verline(t_param *param, int x, t_texture t)
 {
 	double	y;
