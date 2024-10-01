@@ -16,16 +16,16 @@ void	transpose_map(t_param *param)
 		x = -1;
 		while (++x < param->map_y)
 		{
-			if ((size_t)x < strlen(param->map[y]))
+			if ((size_t)x < ft_strlen(param->map[y]))
 				transposed_map[x][y] = param->map[y][x];
 			else
 				transposed_map[x][y] = ' ';
 		}
 	}
-	clean_map(param->map);
 	x = -1;
 	while (++x < param->map_y)
 		transposed_map[x][param->map_x] = '\0';
+	clean_map(param->map);
 	param->map = transposed_map;
 }
 
