@@ -99,7 +99,6 @@ void	setup_ray(t_param *param, int cur)
 	calcul_step_side_dist(param);
 }
 
-
 void	cast_rays_and_render(t_param *param)
 {
 	int	cur;

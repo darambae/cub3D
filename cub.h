@@ -157,5 +157,4 @@ int				clean_map(char **map);
 //bonus
 void			print_minimap(t_param *param);
 
-
 #endif

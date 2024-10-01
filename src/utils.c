@@ -34,4 +34,3 @@ int	texture_parsed(t_param *param)
 		i++;
 	return (i);
 }
-
