@@ -64,7 +64,7 @@ void	print_ray_on_minimap(t_param *p)
 				[(int)(ray.map.y / p->mini.scale)] == '1')
 				break ;
 			my_mlxx_pixel_put(p, ray.map.x + 10, ray.map.y + 10,
-				create_trgb(200, 255, 255, 0));
+				create_rgb(255, 255, 0));
 			ray_length += 0.1;
 		}
 	}

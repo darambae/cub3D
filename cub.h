@@ -99,6 +99,7 @@ typedef struct s_param
 
 //parsing
 void			parse_map_file(t_param *param, char **av);
+void			swap_x_y(t_param *param);
 
 //texture path and color parsing
 int				get_color(t_param *param);
@@ -118,7 +119,7 @@ bool			closed_map(t_param *param, int max_x, int x, int y);
 int				check_map(t_param *param);
 void			set_direction(t_param *param, char c);
 int				texture_parsed(t_param *param);
-char			**transpose_map(char **original_map, int height, int width);
+void			transpose_map(t_param *param);
 
 //vector calculation
 t_vec			add_vec(t_vec a, t_vec b);
@@ -145,7 +146,6 @@ void			get_perp_wall_dist(t_param *param);
 
 //utils
 int				create_rgb(int r, int g, int b);
-int				create_trgb(int t, int r, int g, int b);
 void			my_mlxx_pixel_put(t_param *param, int x, int y, int color);
 
 //error management
@@ -153,7 +153,7 @@ void			ft_error(char *str, t_param *param);
 void			clean_all(t_param *param);
 void			clean_mlx(t_param *param);
 void			clean_tex(t_param *param);
-
+int				clean_map(char **map);
 //bonus
 void			print_minimap(t_param *param);
 

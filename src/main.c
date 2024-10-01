@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 		if (!set_screen(param))
 			ft_error("memory allocation failed", param);
 		load_texture(param);
+		swap_x_y(param);
 		cast_rays_and_render(param);
 		event_handler(param);
 		mlx_loop(param->mlx);

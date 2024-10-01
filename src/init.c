@@ -62,7 +62,7 @@ void	init_param(t_param *param)
 	param->plane.x = 0;
 	param->plane.y = 0;
 	param->mini.scale = 10;
-	param->mini.color = create_trgb(200, 250, 240, 230);
+	param->mini.color = create_rgb(250, 240, 230);
 	param->pos.x = -1;
 	param->pos.y = -1;
 	param->color_floor = 0;

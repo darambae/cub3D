@@ -1,5 +1,18 @@
 #include "../cub.h"
 
+void	swap_x_y(t_param *param)
+{
+	int	tmp;
+
+	transpose_map(param);
+	tmp = param->map_x;
+	param->map_x = param->map_y;
+	param->map_y = tmp;
+	tmp = param->pos.x;
+	param->pos.x = param->pos.y;
+	param->pos.y = tmp;
+}
+
 int	skip_space(char *line, int *i)
 {
 	if (!ft_strchr(" \t\n\v\r", line[*i]))
@@ -25,23 +38,6 @@ int	get_number(int *n, char *line, int *i)
 			(*i)++;
 		return (0);
 	}
-	return (-1);
-}
-
-//free la map
-int	clean_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i] != NULL)
-	{
-		free(map[i]);
-		map[i] = NULL;
-		i++;
-	}
-	free(map);
-	map = NULL;
 	return (-1);
 }
 

@@ -100,7 +100,6 @@ int	check_format(t_param *param)
 void	check_texture(t_param *param)
 {
 	int		map;
-	int		tmp;
 
 	map = 0;
 	param->current_line = get_next_line(param->fd, 0);
@@ -117,11 +116,4 @@ void	check_texture(t_param *param)
 		}
 		param->current_line = get_next_line(param->fd, 0);
 	}
-	param->map = transpose_map(param->map, param->map_x, param->map_y);
-	tmp = param->map_x;
-	param->map_x = param->map_y;
-	param->map_y = tmp;
-	tmp = param->pos.x;
-	param->pos.x = param->pos.y;
-	param->pos.y = tmp;
 }

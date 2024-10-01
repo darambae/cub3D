@@ -1,5 +1,22 @@
 #include "../cub.h"
 
+//free la map
+int	clean_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		map[i] = NULL;
+		i++;
+	}
+	free(map);
+	map = NULL;
+	return (-1);
+}
+
 void	clean_tex(t_param *param)
 {
 	int	i;
