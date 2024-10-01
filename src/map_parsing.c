@@ -2,7 +2,8 @@
 
 void	check_char(int *i, t_param *param)
 {
-	while (param->current_line[*i] && ft_strchr("01NSEW ", param->current_line[*i]))
+	while (param->current_line[*i] && ft_strchr("01NSEW ", \
+		param->current_line[*i]))
 	{
 		if (ft_strchr("NSEW", param->current_line[*i]))
 		{

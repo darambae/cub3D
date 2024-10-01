@@ -87,7 +87,8 @@ int	check_format(t_param *param)
 	int	i;
 
 	i = 0;
-	while (param->current_line[i] && ft_strchr(" \t\n\v\r", param->current_line[i]))
+	while (param->current_line[i] \
+		&& ft_strchr(" \t\n\v\r", param->current_line[i]))
 		i++;
 	if (!param->current_line[i])
 		return (0);
@@ -100,6 +101,7 @@ int	check_format(t_param *param)
 void	check_texture(t_param *param)
 {
 	int		map;
+	int		tmp;
 
 	map = 0;
 	param->current_line = get_next_line(param->fd, 0);
@@ -116,4 +118,11 @@ void	check_texture(t_param *param)
 		}
 		param->current_line = get_next_line(param->fd, 0);
 	}
+	param->map = transpose_map(param->map, param->map_x, param->map_y);
+	tmp = param->map_x;
+	param->map_x = param->map_y;
+	param->map_y = tmp;
+	tmp = param->pos.x;
+	param->pos.x = param->pos.y;
+	param->pos.y = tmp;
 }
