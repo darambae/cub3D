@@ -124,7 +124,7 @@ void	check_texture(t_param *param)
 		map = check_format(param);
 		if (map == -1 || (map == 1 && (texture_parsed(param) != 6
 					|| get_map(param) == -1 || check_map(param) == -1)))
-			ft_error("Invalid texture format(NO/SO/E/W/F/C)", param);
+			ft_error("Invalid texture format(NO/SO/EA/WE/F/C)", param);
 		if (param->current_line && map != 1)
 		{
 			free(param->current_line);
