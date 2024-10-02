@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   text_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dabae <dabae@student.42perpignan.fr>       +#+  +:+       +#+        */
+/*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:25:35 by dabae             #+#    #+#             */
-/*   Updated: 2024/10/01 14:25:36 by dabae            ###   ########.fr       */
+/*   Updated: 2024/10/02 10:42:00 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	get_path(char second_letter, int i, t_param *param)
 	int	j;
 
 	j = 1;
+	if (param->format[i] == 1)
+		return (-1);
 	if (param->current_line[j] == second_letter)
 		j++;
 	if (!ft_strchr(" \t\n\v\r", param->current_line[j]))
